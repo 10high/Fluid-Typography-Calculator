@@ -1,0 +1,429 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+}
+
+body::after {
+    background: url(./images/free-squared-paper-vector.jpg);
+    opacity: 0.55;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 360px;
+}
+
+.sr-only {
+    position: absolute;
+    margin: -1px;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pageTitle {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Sacramento', cursive;
+    font-size: clamp(40px, 2.222222222vw + 2rem, 64px);
+    letter-spacing: 0.03em;
+}
+
+.pageTitle__fluid {
+    margin-right: clamp(5px, 0.6481481481vw + 0.1666666667rem, 12px);
+    border-left-style: solid;
+    border-left-width: 1.5px;
+    border-left-color: black;
+    text-indent: -3px;
+}
+
+.pageTitle__typography {
+    margin-top: clamp(15px, 0.6481481481vw + 0.7916666667rem, 22px);
+}
+
+.pageTitle__lineRight {
+    width: clamp(73px, 23.61111111vw + -0.75rem, 328px);
+    margin-top: clamp(37px, 1.851851852vw + 1.895833333rem, 57px);
+    border-top-style: solid;
+    border-top-width: 1.5px;
+    border-top-color: black;
+}
+
+.pageTitle__lineDown {
+    border-left-style: solid;
+    border-left-width: 1.5px;
+    border-left-color: black;
+    flex-basis: 100%;
+    height: clamp(42px, 1.018518519vw + 2.395833333rem, 53px);
+}
+
+.bodyContainer {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: clamp(252px, 4.074074074vw + 14.83333333rem, 296px);
+    height: clamp(451px, 8.981481481vw + 26.16666667rem, 548px);
+    border-style: solid;
+    border-color: black;
+    border-width: 1.5px;
+    border-radius: 23px;
+}
+
+.calculator__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.calculator__outputWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: clamp(16px, 0.7407407407vw + 0.8333333333rem, 24px);
+}
+
+.calculator__outputLeftSpacer {
+    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+}
+
+.calculator__outputBorder {
+    display: flex;
+    justify-content: space-between;
+    width: clamp(220px, 3.333333333vw + 13rem, 256px);
+    height: 46px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1.5px;
+    border-radius: 7px;
+}
+
+.calculator__output {
+    max-width: 220px;
+    flex-shrink: 1;
+    padding-left: 4px;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.calculator__clipboard {
+    flex-basis: auto;
+    flex-shrink: 0;
+    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    height: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    padding: 4px 4px 0 0;
+}
+
+.calculator__outputRightSpacer {
+    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1.5px;
+    position: relative;
+    top: -25px;
+}
+
+.calculator__connectingLine {
+    align-self: flex-end;
+    width: 50%;
+    border-left-style: solid;
+    border-left-color: black;
+    border-left-width: 1.5px;
+}
+
+.calculator__connectingLine--narrow {
+    height: clamp(8px, 0.3703703704vw + 0.4166666667rem, 12px);
+}
+
+.calculator__connectingLine--wide {
+    height: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+}
+
+.calculator__inputWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: clamp(220px, 3.333333333vw + 13rem, 256px);
+    height: clamp(24px, 0.3703703704vw + 1.416666667rem, 28px);
+}
+
+.calculator__inputBorder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-style: solid;
+    border-color: black;
+    border-width: 1.5px;
+    border-radius: 4px;
+    padding: 0 4px 0 4px;
+}
+
+.calculator__inputField {
+    width: 50px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: hsl(0, 0%, 100%, 0);
+    padding: 2px 0 2px 4px;
+}
+
+.calculator__measureUnit {
+    text-decoration: none;
+}
+
+.calculator__infoCircle {
+    margin-left: 4px;
+}
+
+.keypad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(220px, 3.333333333vw + 13rem, 256px);
+    height: clamp(184px, 3.333333333vw + 10.75rem, 220px);
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 7px;
+}
+
+.keypad__container {
+    height: clamp(152px, 3.333333333vw + 8.75rem, 188px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.keypad__rowWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: clamp(110px, 2.407407407vw + 6.333333333rem, 136px);
+}
+
+.keypad__button {
+    width: clamp(26px, 0.5555555556vw + 1.5rem, 32px);
+    height: clamp(26px, 0.5555555556vw + 1.5rem, 32px);
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    border-style: solid;
+    border-color: black;
+    border-width: 1.5px;
+    border-radius: 4px;
+    background-color: hsl(0, 0%, 100%, 0);
+}
+
+.descriptionConnectingLine {
+    height: 50px;
+    border-right-style: solid;
+    border-right-color: black;
+    border-right-width: 1.5px;
+}
+
+.description {
+    width: 350px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: black;
+    border-width: 1.5px;
+    border-radius: 23px;
+}
+
+.description__paragraph {
+    font-size: 1rem;
+    line-height: 1.171875;
+    margin: 16px 10px 0 10px;
+}
+
+.boldText {
+    font-weight: 700;
+}
+
+.description__link {
+    color: rgb(0, 0, 238);
+    font-style: italic;
+}
+
+
+@media (min-width: 1000px) {
+    .bodyContainer {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+    }
+
+    .calculator {
+        margin-right: clamp(250px, 34.09090909vw + -5.681818182rem, 400px);
+    }
+
+    .descriptionConnectingLine {
+        align-self: flex-end;
+        width: clamp(50px, 22.72727273vw + -11.07954545rem, 150px);
+        height: 200px;
+        border-right-style: none;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 1.5px;
+    }
+
+    .description {
+        align-self: flex-end;
+        margin-bottom: 2rem;
+    }
+}

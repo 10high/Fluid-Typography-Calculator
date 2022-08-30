@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="A fluid typography calculator for building responsive Web pages with CSS clamp">
+    <title>Fluid Typography Calculator</title>
+</head>
+
+<body>
+    <main>
+        <h1 class="sr-only">Fluid Typography Calculator</h1>
+
+        <div class="pageTitle">
+            <h2 class="pageTitle__fluid">fluid</h2>
+            <h2 class="pageTitle__typography">typography</h2>
+            <div class="pageTitle__lineRight"></div>
+            <div class="pageTitle__lineDown"></div>
+        </div>
+
+        <div class="bodyContainer">
+            <div class="calculator">
+                <form class="calculator__form">
+                    <div class="calculator__outputWrapper">
+                        <div class="calculator__outputLeftSpacer"></div>
+                        <div class="calculator__outputBorder">
+                            <output class="calculator__output" name="result" for="GJHGJHG">
+                                clamp(2.625rem, 1.018518519vw +
+                                2.395833333vw, 3.3125rem)
+                            </output>
+                            <svg class="calculator__clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                <path
+                                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                <path
+                                    d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                            </svg>
+                        </div>
+                        <div class="calculator__outputRightSpacer"></div>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--wide"></div>
+    
+                    <div class="calculator__inputWrapper">
+                        <div class="calculator__inputBorder">
+                            <label for="remInput">1 rem:</label>
+                            <span>
+                                <input class="calculator__inputField" type="number" name="remInput" id="remInput">
+                                <abbr class="calculator__measureUnit" title="pixels">px</abbr>
+                            </span>
+                        </div>
+                        <svg class="calculator__infoCircle calculator__infoCircleRem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--narrow"></div>
+    
+                    <div class="calculator__inputWrapper">
+                        <div class="calculator__inputBorder">
+                            <label for="minScreenInput">min viewport:</label>
+                            <span>
+                                <input class="calculator__inputField" type="number" name="minScreenInput" id="minScreenInput">
+                                <abbr class="calculator__measureUnit" title="pixels">px</abbr>
+                            </span>
+                        </div>
+                        <svg class="calculator__infoCircle calculator__infoCircleMinScreen" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--narrow"></div>
+    
+                    <div class="calculator__inputWrapper">
+                        <div class="calculator__inputBorder">
+                            <label for="maxScreenInput">max viewport:</label>
+                            <span>
+                                <input class="calculator__inputField" type="number" name="maxScreenInput" id="maxScreenInput">
+                                <abbr class="calculator__measureUnit" title="pixels">px</abbr>
+                            </span>
+                        </div>
+                        <svg class="calculator__infoCircle calculator__infoCircleMaxSCreen" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--wide"></div>
+    
+                    <div class="calculator__inputWrapper">
+                        <div class="calculator__inputBorder">
+                            <label for="minClampInput">clamp min:</label>
+                            <span>
+                                <input class="calculator__inputField" type="number" name="minClampInput" id="minClampInput">
+                                <abbr class="calculator__measureUnit" title="pixels">px</abbr>
+                            </span>
+                        </div>
+                        <svg class="calculator__infoCircle calculator__infoCircleMinClamp" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--narrow"></div>
+    
+                    <div class="calculator__inputWrapper">
+                        <div class="calculator__inputBorder">
+                            <label for="maxClampInput">clamp max:</label>
+                            <span>
+                                <input class="calculator__inputField" type="number" name="maxClampInput" id="maxClampInput">
+                                <abbr class="calculator__measureUnit" title="pixels">px</abbr>
+                            </span>
+                        </div>
+                        <svg class="calculator__infoCircle calculator__infoCircleMaxClamp" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+    
+                    <div class="calculator__connectingLine calculator__connectingLine--wide"></div>
+    
+                    <div class="keypad">
+                        <div class="keypad__container">
+                            <div class="keypad__rowWrapper">
+                                <input class="keypad__button" type="button" value="7">
+                                <input class="keypad__button" type="button" value="8">
+                                <input class="keypad__button" type="button" value="9">
+                            </div>
+                            <div class="keypad__rowWrapper">
+                                <input class="keypad__button" type="button" value="4">
+                                <input class="keypad__button" type="button" value="5">
+                                <input class="keypad__button" type="button" value="6">
+                            </div>
+                            <div class="keypad__rowWrapper">
+                                <input class="keypad__button" type="button" value="1">
+                                <input class="keypad__button" type="button" value="2">
+                                <input class="keypad__button" type="button" value="3">
+                            </div>
+                            <div class="keypad__rowWrapper">
+                                <input class="keypad__button" type="button" value="C">
+                                <input class="keypad__button" type="button" value="0">
+                                <input class="keypad__button" type="button" value="=">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="descriptionConnectingLine"></div>
+    
+            <div class="description">
+                <p class="description__paragraph">This <span class="boldText">fluid typography calculator</span> is based on the article <a class="description__link"
+                        href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">Modern Fluid
+                        Typography</a> by Adrian Bece in
+                    <a class="description__link" href="https://www.smashingmagazine.com/">Smashing Magazine</a>.
+                </p>
+                <p class="description__paragraph">Fluid typography helps you to build <span class="boldText">responsive Web pages</span> with <span
+                        class="boldText">CSS clamp()</span> by setting a minimum, maximum,
+                    and preferred value for <span class="boldText">scaling</span> the widths, heights, and sizes of fonts
+                    and other elements to the
+                    <span class="boldText">viewport width.</span>
+                </p>
+            </div>
+</div>
+
+    </main>
+</body>
+
+</html>
