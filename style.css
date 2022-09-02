@@ -257,6 +257,7 @@ main {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
 }
 
 
@@ -316,12 +317,17 @@ main {
 
 .calculator__inputField {
     width: 50px;
+    text-align: right;
     border-style: solid;
     border-color: black;
     border-width: 1px;
     border-radius: 4px;
     background-color: hsl(0, 0%, 100%, 0);
-    padding: 2px 0 2px 4px;
+    padding: 2px 2px 2px 4px;
+}
+
+.calculator__inputField--invalid {
+    border-color: red;
 }
 
 .calculator__measureUnit {
@@ -366,6 +372,18 @@ main {
     border-width: 1.5px;
     border-radius: 4px;
     background-color: hsl(0, 0%, 100%, 0);
+}
+
+.keypad__button:hover {
+    background-color: #b8b8b8;
+    cursor: pointer;
+}
+
+.keypad__button--pressed {
+    font-weight: 700;
+    border-width: 2px;
+    background-color: #a1a1a1;
+    box-shadow: 0px 0px 1px 1px #929292;
 }
 
 .descriptionConnectingLine {
