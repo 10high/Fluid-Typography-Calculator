@@ -156,6 +156,14 @@ main {
     min-width: 360px;
 }
 
+input:focus {
+    outline-style: none;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+}
+
 .sr-only {
     position: absolute;
     margin: -1px;
@@ -250,23 +258,30 @@ main {
 }
 
 .calculator__output {
-    max-width: 220px;
-    flex-shrink: 1;
-    padding-left: 4px;
     align-self: center;
-    white-space: nowrap;
-    overflow: hidden;
+    flex-basis: auto;
+    flex-grow: 2;
+    padding-left: 4px;
+    border-style: none;
+    background-color: hsl(0, 0%, 100%, 0);
+    font-weight: 700;
     text-overflow: ellipsis;
-
 }
-
 
 .calculator__clipboard {
     flex-basis: auto;
     flex-shrink: 0;
     width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
     height: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
-    padding: 4px 4px 0 0;
+    padding: 2px;
+}
+
+.calculator__clipboard:focus {
+    outline-style: none;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px 0.5px 2px 2px;
+    border-radius: 4px;
 }
 
 .calculator__outputRightSpacer {
@@ -379,6 +394,7 @@ main {
     cursor: pointer;
 }
 
+.calculator__clipboard:active,
 .keypad__button--pressed {
     font-weight: 700;
     border-width: 2px;

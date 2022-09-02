@@ -14,14 +14,6 @@ const isDigitKey = key => {
     return Object.hasOwn(digitKeys, key) ? digitKeys[key] : false;
 }
 
-const isActionKey = key => {
-    const actionKeys = {
-        "c": "#keyC",
-        "=": "#keyEquals"
-    }
-    return Object.hasOwn(actionKeys, key) ? actionKeys[key] : false;
-}
-
 inputFieldIDs = ["remInput", "minScreenInput", "maxScreenInput", "minClampInput", "maxClampInput"];
 
 const isValidInputField = (inputElement = document.activeElement) => inputFieldIDs.includes(inputElement.id);
@@ -52,11 +44,19 @@ const isNotMaxLength = (inputElement = document.activeElement) => {
 
 const toggleKeypadPressed = element => element.classList.toggle("keypad__button--pressed");
 
+const copyToClipboard = () => navigator.clipboard.writeText(document.querySelector(".calculator__output").value);
+
 const keyClickedDown = (event) => {
     event.preventDefault();
     toggleKeypadPressed(event.target);
     if (isDigitKey(event.target.value) && isValidInputField() && isNotMaxLength()) {
+        document.activeElement.classList.remove("calculator__inputField--invalid");
         insertNewValue(event.target.value);
+        return;
+    }
+    if (event.target.value === "=") {
+        calculateClamp();
+        return;
     }
 }
 
@@ -75,12 +75,26 @@ const keyPressedDown = (event) => {
         let key = document.querySelector(isDigitKey(event.key));
         toggleKeypadPressed(key);
         insertNewValue(event.key);
+        document.activeElement.classList.remove("calculator__inputField--invalid");
+        return;
+    }
+    if (event.ctrlKey && event.key === "c") {
         return;
     }
     if (event.key === "c") {
-        let key = document.querySelector(isActionKey("c"));
+        let key = document.querySelector("#keyC");
         toggleKeypadPressed(key);
         key.click();
+        return;
+    }
+    if (event.key === "=" || event.key === "Enter") {
+        if (document.activeElement.id === "clipboard") {
+            toggleKeypadPressed(document.activeElement);
+            copyToClipboard();
+            return;
+        }
+        toggleKeypadPressed(document.querySelector("#keyEquals"));
+        calculateClamp();
         return;
     }
 }
@@ -91,9 +105,19 @@ const keyPressedUp = (event) => {
         toggleKeypadPressed(key);
         return
     }
+    if (event.ctrlKey && event.key === "c") {
+        return;
+    }
     if (event.key === "c") {
-        let key = document.querySelector(isActionKey(event.key));
-        toggleKeypadPressed(key);
+        toggleKeypadPressed(document.querySelector("#keyC"));
+        return;
+    }
+    if (event.key === "=" || event.key === "Enter") {
+        if (document.activeElement.id === "clipboard") {
+            toggleKeypadPressed(document.activeElement);
+            return;
+        }
+        toggleKeypadPressed(document.querySelector("#keyEquals"));
         return;
     }
 }
@@ -125,14 +149,18 @@ const calculateClamp = () => {
     } else {
         const vw = (100 * (inputFieldValues.maxClampInput - inputFieldValues.minClampInput)) / (inputFieldValues.maxScreenInput - inputFieldValues.minScreenInput);
         const rem = (((inputFieldValues.minScreenInput * inputFieldValues.maxClampInput) - (inputFieldValues.maxScreenInput * inputFieldValues.minClampInput)) / (inputFieldValues.minScreenInput - inputFieldValues.maxScreenInput)) / inputFieldValues.remInput;
-        document.querySelector(".calculator__output").value = `clamp(${inputFieldValues.minClampInput / inputFieldValues.remInput}rem, ${vw}vw + ${rem}rem, ${inputFieldValues.maxClampInput / inputFieldValues.remInput}rem)`;
+        const outputScreen = document.querySelector(".calculator__output");
+        outputScreen.removeAttribute("readonly");
+        outputScreen.value = `clamp(${inputFieldValues.minClampInput / inputFieldValues.remInput}rem, ${vw}vw + ${rem}rem, ${inputFieldValues.maxClampInput / inputFieldValues.remInput}rem)`;
+        outputScreen.focus();
+        outputScreen.setAttribute("readonly", "readonly");
     }
 }
-
 
 addEventListener(elementArray(".keypad__button"), "mousedown", keyClickedDown);
 addEventListener(elementArray(".keypad__button"), "mouseup", keyClickedUp);
 document.addEventListener("keydown", keyPressedDown);
 document.addEventListener("keyup", keyPressedUp);
+document.querySelector(".calculator__clipboard").addEventListener("click", copyToClipboard);
 
 

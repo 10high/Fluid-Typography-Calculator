@@ -26,11 +26,14 @@
 
 - [] Typing numbers animates the Keypad
 
+- [] On calculation sets focus on output for easy copying
+
 
 
 ## Devlog
 
-- Originally used HTML element Output for the output field because I thought it would be the better choice for accessibility, but because screen space is limited and the the ouput is typically very long, I also used `overflow: hidden` and `text-overflow: ellipsis` but I feel it looks very constricted and I would like to be able to click on the field and for the cursor to be positioned there. So, now I'm going to look for a different approach to displaying the calculated output. 
+- Originally used HTML element Output for the output field because I thought it would be the better choice for accessibility, but because screen space is limited and the the ouput is typically very long, I also used `overflow: hidden` and `text-overflow: ellipsis` but I feel it looks very constricted and I would like to be able to click on the field and for the cursor to be positioned there. So, now I'm going to look for a different approach to displaying the calculated output.
+
 
 
 

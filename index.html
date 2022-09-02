@@ -33,13 +33,10 @@
                     <div class="calculator__outputWrapper">
                         <div class="calculator__outputLeftSpacer"></div>
                         <div class="calculator__outputBorder">
-                            <output class="calculator__output" name="result"
-                                for="remInput minScreenInput maxScreenInput minClampInput maxClampInput">
-                                clamp(2.625rem, 1.018518519vw +
-                                2.395833333rem, 3.3125rem)
-                            </output>
-                            <svg class="calculator__clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                            <input class="calculator__output" type="text" readonly="readonly" name="result" placeholder="clamp(2.625rem, 1.018518519vw +
+                            2.395833333rem, 3.3125rem)" onfocus="select()">
+                            <svg id="clipboard" class="calculator__clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16" tabindex="1">
                                 <path
                                     d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
                                 <path
@@ -56,7 +53,7 @@
                             <label for="remInput">1 rem:</label>
                             <span>
                                 <input class="calculator__inputField" type="number" name="remInput" id="remInput"
-                                    placeholder="0">
+                                    placeholder="16">
                                 <abbr class="calculator__measureUnit" title="pixels">px</abbr>
                             </span>
                         </div>
