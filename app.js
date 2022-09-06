@@ -174,11 +174,13 @@ const keyPressedUp = (event) => {
 
 const inputChanged = (event) => {
     if (!isDigitKey(event.data)) {
-        const activeInput = document.activeElement;
-        const existingFieldValue = activeInput.value;
+        if (event.inputType.includes("delete")) {
+            return;
+        }
+        event.target.setAttribute("readonly", "readonly");
         setTimeout(() => {
-            activeInput.value = existingFieldValue;
-        }, 10)
+            event.target.removeAttribute("readonly");
+        }, 300)
     }
 }
 
