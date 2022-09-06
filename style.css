@@ -135,21 +135,7 @@ body {
     line-height: 1;
     font-family: 'Roboto', sans-serif;
     background-color: white;
-}
-
-body::after {
-    display: block;
-    background: url(./images/free-squared-paper-vector.jpg);
-    background-size: contain;
-    background-repeat: repeat;
-    opacity: 0.55;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
+    background-image: url(./images/free-squared-paper-vector.png);
 }
 
 main {
@@ -180,7 +166,7 @@ input:focus {
 .pageTitle {
     display: flex;
     flex-wrap: wrap;
-    font-family: 'Sacramento', cursive;
+    font-family: 'Sacramento', 'Brush Script MT', cursive;
     font-size: clamp(40px, 2.222222222vw + 2rem, 64px);
     letter-spacing: 0.03em;
 }
