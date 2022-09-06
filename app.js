@@ -78,15 +78,6 @@ const keyClickedDown = (event) => {
 const keyClickedUp = (event) => toggleKeypadPressed(event.target);
 
 const keyPressedDown = (event) => {
-    //only for mobile testing
-    if (isValidInputField() && !isDigitKey(event.key) && !specialKeys.includes(event.key)) {
-        event.preventDefault();
-        console.log("success");
-        let existingInput = document.activeElement.value;
-        document.activeElement.value = existingInput;
-        return;
-    }
-
     if (isDigitKey(event.key) && isValidInputField() && isNotMaxLength()) {
         let key = document.querySelector(isDigitKey(event.key));
         toggleKeypadPressed(key);
@@ -181,6 +172,13 @@ const keyPressedUp = (event) => {
     }
 }
 
+const inputChanged = (event) => {
+    if (!isDigitKey(event.data)) {
+        event.preventDefault();
+        document.activeElement.value = "success";
+    }
+}
+
 const elementArray = query => document.querySelectorAll(query);
 
 const addEventListener = (elementArray, eventType, func) => {
@@ -218,8 +216,8 @@ const calculateClamp = () => {
 
 addEventListener(elementArray(".keypad__button"), "mousedown", keyClickedDown);
 addEventListener(elementArray(".keypad__button"), "mouseup", keyClickedUp);
-document.addEventListener("keydown", keyPressedDown);
-document.addEventListener("keyup", keyPressedUp);
+//document.addEventListener("keydown", keyPressedDown);
+//document.addEventListener("keyup", keyPressedUp);
 document.querySelector(".calculator__clipboard").addEventListener("click", copyToClipboard);
-
+addEventListener(elementArray(".calculator__inputField"), "beforeinput", inputChanged);
 
