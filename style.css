@@ -140,7 +140,7 @@ body {
 body::after {
     display: block;
     background: url(./images/free-squared-paper-vector.jpg);
-    background-size: cover;
+    background-size: contain;
     background-repeat: repeat;
     opacity: 0.55;
     content: "";
