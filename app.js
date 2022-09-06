@@ -18,7 +18,7 @@ inputFieldIDs = ["remInput", "minScreenInput", "maxScreenInput", "minClampInput"
 
 const isValidInputField = (inputElement = document.activeElement) => inputFieldIDs.includes(inputElement.id);
 
-const specialKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Backspace", "Delete"];
+const specialKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Backspace", "Delete", "Tab"];
 
 const isMinLength = (inputElement = document.activeElement) => {
     inputElement.classList.remove("calculator__inputField--invalid");
@@ -35,7 +35,11 @@ const insertNewValue = (inputtedValue, inputElement = document.activeElement) =>
     if (existingValue === "0") {
         existingValue = "";
     }
-    inputElement.value = `${existingValue}${inputtedValue}`;
+    let selectionStart = inputElement.selectionStart;
+    let selectionEnd = inputElement.selectionEnd;
+    inputElement.value = inputElement.value.substring(0, selectionStart)
+        + inputtedValue
+        + inputElement.value.substring(selectionEnd, inputElement.value.length);
 }
 
 const isNotMaxLength = (inputElement = document.activeElement) => {
@@ -46,6 +50,8 @@ const toggleKeypadPressed = element => element.classList.toggle("keypad__button-
 
 const copyToClipboard = () => navigator.clipboard.writeText(document.querySelector(".calculator__output").value);
 
+
+
 const keyClickedDown = (event) => {
     event.preventDefault();
     toggleKeypadPressed(event.target);
@@ -53,6 +59,15 @@ const keyClickedDown = (event) => {
         document.activeElement.classList.remove("calculator__inputField--invalid");
         insertNewValue(event.target.value);
         return;
+    }
+    if (isDigitKey(event.target.value) && isValidInputField() && !isNotMaxLength()) {
+        let selectionLength = document.activeElement.selectionEnd - document.activeElement.selectionStart;
+        let inputFieldLength = document.activeElement.value.length;
+        if ((inputFieldLength - selectionLength) + 1 < 5) {
+            document.activeElement.classList.remove("calculator__inputField--invalid");
+            insertNewValue(event.target.value);
+            return;
+        }
     }
     if (event.target.value === "=") {
         calculateClamp();
@@ -63,23 +78,57 @@ const keyClickedDown = (event) => {
 const keyClickedUp = (event) => toggleKeypadPressed(event.target);
 
 const keyPressedDown = (event) => {
-    if (isValidInputField() && !isNotMaxLength() && !specialKeys.includes(event.key)) {
-        if (isDigitKey(event.key)) {
-            let key = document.querySelector(isDigitKey(event.key));
-            toggleKeypadPressed(key);
-        }
-        event.preventDefault();
-    }
     if (isDigitKey(event.key) && isValidInputField() && isNotMaxLength()) {
-        event.preventDefault();
         let key = document.querySelector(isDigitKey(event.key));
         toggleKeypadPressed(key);
-        insertNewValue(event.key);
         document.activeElement.classList.remove("calculator__inputField--invalid");
         return;
     }
-    if (event.ctrlKey && event.key === "c") {
+    if (isDigitKey(event.key) && isValidInputField() && !isNotMaxLength()) {
+        let selectionLength = document.activeElement.selectionEnd - document.activeElement.selectionStart;
+        let inputFieldLength = document.activeElement.value.length;
+        if ((inputFieldLength - selectionLength) + 1 < 5) {
+            let key = document.querySelector(isDigitKey(event.key));
+            toggleKeypadPressed(key);
+            document.activeElement.classList.remove("calculator__inputField--invalid");
+            return;
+        }
+    }
+    if (event.ctrlKey && event.key === "c" || event.ctrlKey && event.key === "a") {
         return;
+    }
+    if (event.ctrlKey && event.key === "r") {
+        return;
+    }
+    if (event.ctrlKey && event.key === "v") {
+        if (isValidInputField()) {
+            let existingFieldValue = document.activeElement.value;
+            setTimeout(() => {
+                let clipboardContent = Array.from(document.activeElement.value);
+                for (item of clipboardContent) {
+                    if (!isDigitKey(item)) {
+                        document.activeElement.value = existingFieldValue;
+                        return;
+                    }
+                }
+                if (clipboardContent.length > 4) {
+                    document.activeElement.value = existingFieldValue;
+                    return;
+                }
+            }, 100);
+        }
+        return;
+    }
+    if (isValidInputField() && !isDigitKey(event.key) && !specialKeys.includes(event.key)) {
+        event.preventDefault();
+    }
+    if (isValidInputField() && !isNotMaxLength() && !specialKeys.includes(event.key)) {
+        event.preventDefault();
+        if (isDigitKey(event.key)) {
+            let key = document.querySelector(isDigitKey(event.key));
+            toggleKeypadPressed(key);
+            return;
+        }
     }
     if (event.key === "c") {
         let key = document.querySelector("#keyC");
@@ -87,12 +136,13 @@ const keyPressedDown = (event) => {
         key.click();
         return;
     }
+    if (event.key === "Enter" && document.activeElement.id === "clipboard") {
+        toggleKeypadPressed(document.activeElement);
+        copyToClipboard();
+        return;
+    }
+
     if (event.key === "=" || event.key === "Enter") {
-        if (document.activeElement.id === "clipboard") {
-            toggleKeypadPressed(document.activeElement);
-            copyToClipboard();
-            return;
-        }
         toggleKeypadPressed(document.querySelector("#keyEquals"));
         calculateClamp();
         return;
@@ -112,11 +162,11 @@ const keyPressedUp = (event) => {
         toggleKeypadPressed(document.querySelector("#keyC"));
         return;
     }
-    if (event.key === "=" || event.key === "Enter") {
-        if (document.activeElement.id === "clipboard") {
-            toggleKeypadPressed(document.activeElement);
-            return;
-        }
+    if (event.key === "Enter" && document.activeElement.id === "clipboard") {
+        toggleKeypadPressed(document.activeElement);
+        return;
+    }
+    if (event.key === "Enter" || event.key === "=") {
         toggleKeypadPressed(document.querySelector("#keyEquals"));
         return;
     }
@@ -141,7 +191,7 @@ const calculateClamp = () => {
         if (!isMinLength(document.querySelector(`#${inputField}`))) {
             invalidFieldInputs++;
         } else {
-            inputFieldValues[inputField] = document.querySelector(`#${inputField}`).value;
+            inputFieldValues[inputField] = parseInt(document.querySelector(`#${inputField}`).value);
         }
     }
     if (invalidFieldInputs > 0) {

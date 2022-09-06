@@ -349,8 +349,79 @@ input:focus {
     text-decoration: none;
 }
 
+.calculator__tooltipContainer {
+    position: relative;
+}
+
 .calculator__infoCircle {
     margin-left: 4px;
+    border-radius: 50%;
+}
+
+.calculator__infoCircle:hover {
+    background-color: #b8b8b8;
+    cursor: pointer;
+}
+
+.calculator__infoCircle:focus {
+    background-color: #b8b8b8;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: black;
+}
+
+.calculator__tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: 140%;
+    right: -50px;
+    z-index: 1;
+    width: 180px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 4px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1.5px;
+    border-radius: 6px;
+
+}
+
+.calculator__tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    right: 52px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.calculator__infoCircleRem:hover~.calculator__tooltipRem,
+.calculator__infoCircleRem:focus~.calculator__tooltipRem {
+    visibility: visible;
+}
+
+.calculator__infoCircleMinWidth:hover~.calculator__tooltipMinWidth,
+.calculator__infoCircleMinWidth:focus~.calculator__tooltipMinWidth {
+    visibility: visible;
+}
+
+.calculator__infoCircleMaxWidth:hover~.calculator__tooltipMaxWidth,
+.calculator__infoCircleMaxWidth:focus~.calculator__tooltipMaxWidth {
+    visibility: visible;
+}
+
+.calculator__infoCircleMinClamp:hover~.calculator__tooltipMinClamp,
+.calculator__infoCircleMinClamp:focus~.calculator__tooltipMinClamp {
+    visibility: visible;
+}
+
+.calculator__infoCircleMaxClamp:hover~.calculator__tooltipMaxClamp,
+.calculator__infoCircleMaxClamp:focus~.calculator__tooltipMaxClamp {
+    visibility: visible;
 }
 
 .keypad {
