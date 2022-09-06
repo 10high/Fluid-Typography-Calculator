@@ -80,6 +80,8 @@ const keyClickedUp = (event) => toggleKeypadPressed(event.target);
 const keyPressedDown = (event) => {
     //only for mobile testing
     if (isValidInputField() && !isDigitKey(event.key) && !specialKeys.includes(event.key)) {
+        event.preventDefault();
+        console.log("success");
         let existingInput = document.activeElement.value;
         document.activeElement.value = existingInput;
         return;
