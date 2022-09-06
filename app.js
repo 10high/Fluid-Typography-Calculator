@@ -78,6 +78,11 @@ const keyClickedDown = (event) => {
 const keyClickedUp = (event) => toggleKeypadPressed(event.target);
 
 const keyPressedDown = (event) => {
+    //only for mobile testing
+    if (isValidInputField() && !isDigitKey(event.key) && !specialKeys.includes(event.key)) {
+        event.preventDefault();
+    }
+
     if (isDigitKey(event.key) && isValidInputField() && isNotMaxLength()) {
         let key = document.querySelector(isDigitKey(event.key));
         toggleKeypadPressed(key);
