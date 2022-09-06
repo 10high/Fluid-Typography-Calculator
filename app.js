@@ -80,7 +80,8 @@ const keyClickedUp = (event) => toggleKeypadPressed(event.target);
 const keyPressedDown = (event) => {
     //only for mobile testing
     if (isValidInputField() && !isDigitKey(event.key) && !specialKeys.includes(event.key)) {
-        event.preventDefault();
+        document.activeElement.value = `success: ${event.key}`
+        return;
     }
 
     if (isDigitKey(event.key) && isValidInputField() && isNotMaxLength()) {
