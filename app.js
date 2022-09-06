@@ -174,8 +174,11 @@ const keyPressedUp = (event) => {
 
 const inputChanged = (event) => {
     if (!isDigitKey(event.data)) {
-        event.preventDefault();
-        document.activeElement.value = "success";
+        const activeInput = document.activeElement;
+        const existingFieldValue = activeInput.value;
+        setTimeout(() => {
+            activeInput.value = existingFieldValue;
+        }, 10)
     }
 }
 
