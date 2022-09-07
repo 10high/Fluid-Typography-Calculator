@@ -331,7 +331,7 @@ input:focus {
 }
 
 .calculator__inputField--invalid {
-    border-color: red;
+    border-color: red !important;
 }
 
 .calculator__measureUnit {
@@ -456,10 +456,10 @@ input:focus {
 
 .calculator__clipboard:active,
 .keypad__button--pressed {
-    font-weight: 700;
-    border-width: 2px;
-    background-color: #a1a1a1;
-    box-shadow: 0px 0px 1px 1px #929292;
+    font-weight: 700 !important;
+    border-width: 2px !important;
+    background-color: #a1a1a1 !important;
+    box-shadow: 0px 0px 1px 1px #929292 !important;
 }
 
 .descriptionConnectingLine {
