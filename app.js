@@ -39,32 +39,27 @@ const toggleKeypadPressed = element => {
 
 const copyToClipboard = () => navigator.clipboard.writeText(document.querySelector(".calculator__output").value);
 
-const isKeyEnter = (event) => {
+const isKeyEnter = event => {
     if (event.key === "Enter") {
         calculateClamp();
     }
 }
 
-const digitKeyClicked = (event) => {
+const digitKeyClicked = event => {
     event.preventDefault();
     toggleKeypadPressed(event.target);
-    if (!inputData.isValidInputField()) {
-        console.log("not valid input field");
-        return;
-    }
-    const activeInputField = document.activeElement;
-    const existingInput = activeInputField.value;
     const clickValue = event.target.value;
-    console.log(`beforeInput: ${existingInput}`);
-    console.log(`event target value on click: ${clickValue}`);
     if (!inputData.isDigitKey(clickValue)) {
-        console.log(`Click value is not digit key: ${clickValue}`);
         if (clickValue === "=") {
-            console.log("Click Vlaue is Equals");
             calculateClamp();
         }
         return;
     }
+    if (!inputData.isValidInputField()) {
+        return;
+    }
+    const activeInputField = document.activeElement;
+    const existingInput = activeInputField.value;
     let selectionStart = activeInputField.selectionStart;
     let selectionEnd = activeInputField.selectionEnd;
     const selectionLength = selectionEnd - selectionStart;
@@ -77,26 +72,22 @@ const digitKeyClicked = (event) => {
     }
 }
 
-const captureKeyboardInput = (event) => {
+const captureKeyboardInput = event => {
     existingInput = event.target.value;
     inputData.existingInput = existingInput;
-    console.log(`beforeInput: ${inputData.existingInput}`);
 }
 
-const monitorKeyboardInput = (event) => {
+const monitorKeyboardInput = event => {
     const newInput = event.data;
     const insertedText = Array.from(event.target.value);
     if (newInput === null) {
-        console.log(`newINput is null. ID; ${newInput}`);
         if (insertedText.length > 4) {
-            console.log(`insertedText length: ${insertedText.length}`);
             event.target.value = inputData.existingInput;
             return;
         }
         for (item of insertedText) {
             if (!inputData.isDigitKey(item)) {
                 event.target.value = inputData.existingInput;
-                console.log(`Inserted, replace value with: ${inputData.existingInput}`);
                 return;
             }
         }
@@ -114,13 +105,10 @@ const monitorKeyboardInput = (event) => {
     for (item of insertedText) {
         if (!inputData.isDigitKey(item)) {
             event.target.value = inputData.existingInput;
-            console.log(`Inserted, replace value with: ${inputData.existingInput}`);
             return;
         }
     }
-    console.log(`Successfully inserted: ${newInput}`);
     const key = document.querySelector(inputData.isDigitKey(newInput));
-    console.log(`key element: ${key}`);
     toggleKeypadPressed(key);
     event.target.classList.remove("calculator__inputField--invalid");
 }
