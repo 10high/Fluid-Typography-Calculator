@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version,> 1%,not ie > 0,not ie_mob > 0
+*/
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -140,8 +147,12 @@ body {
 
 main {
     min-width: 360px;
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-align: end;
     align-items: flex-end;
 }
 
@@ -156,6 +167,7 @@ input:focus {
 .sr-only {
     position: absolute;
     margin: -1px;
+    -webkit-clip-path: inset(50%);
     clip-path: inset(50%);
     width: 1px;
     height: 1px;
@@ -164,6 +176,7 @@ input:focus {
 }
 
 .pageTitle {
+    display: -webkit-box;
     display: flex;
     flex-wrap: wrap;
     font-family: 'Sacramento', 'Brush Script MT', cursive;
@@ -201,14 +214,22 @@ input:focus {
 
 .bodyContainer {
     align-self: center;
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
 }
 
 .calculator {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-pack: start;
     justify-content: flex-start;
     width: clamp(252px, 4.074074074vw + 14.83333333rem, 296px);
     height: clamp(451px, 8.981481481vw + 26.16666667rem, 548px);
@@ -219,13 +240,18 @@ input:focus {
 }
 
 .calculator__form {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
 
 }
 
 .calculator__outputWrapper {
+    display: -webkit-box;
     display: flex;
     flex-wrap: nowrap;
     margin-top: clamp(16px, 0.7407407407vw + 0.8333333333rem, 24px);
@@ -236,7 +262,9 @@ input:focus {
 }
 
 .calculator__outputBorder {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
     width: clamp(220px, 3.333333333vw + 13rem, 256px);
     height: 46px;
@@ -249,11 +277,13 @@ input:focus {
 .calculator__output {
     align-self: center;
     flex-basis: auto;
+    -webkit-box-flex: 2;
     flex-grow: 2;
     padding-left: 4px;
     border-style: none;
     background-color: hsl(0, 0%, 100%, 0);
     font-weight: 700;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
 }
 
@@ -299,8 +329,10 @@ input:focus {
 }
 
 .calculator__inputWrapper {
+    display: -webkit-box;
     display: flex;
     flex-wrap: nowrap;
+    -webkit-box-align: center;
     align-items: center;
     width: clamp(220px, 3.333333333vw + 13rem, 256px);
     height: clamp(24px, 0.3703703704vw + 1.416666667rem, 28px);
@@ -309,8 +341,11 @@ input:focus {
 .calculator__inputBorder {
     width: 100%;
     height: 100%;
+    display: -webkit-box;
     display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
     align-items: center;
     border-style: solid;
     border-color: black;
@@ -414,8 +449,11 @@ input:focus {
 }
 
 .keypad {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
     align-items: center;
     width: clamp(220px, 3.333333333vw + 13rem, 256px);
     height: clamp(184px, 3.333333333vw + 10.75rem, 220px);
@@ -426,13 +464,19 @@ input:focus {
 
 .keypad__container {
     height: clamp(152px, 3.333333333vw + 8.75rem, 188px);
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-pack: justify;
     justify-content: space-between;
 }
 
 .keypad__rowWrapper {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
     width: clamp(110px, 2.407407407vw + 6.333333333rem, 136px);
 }
@@ -459,6 +503,7 @@ input:focus {
     font-weight: 700 !important;
     border-width: 2px !important;
     background-color: #a1a1a1 !important;
+    -webkit-box-shadow: 0px 0px 1px 1px #929292 !important;
     box-shadow: 0px 0px 1px 1px #929292 !important;
 }
 
@@ -472,7 +517,10 @@ input:focus {
 .description {
     width: 350px;
     height: 200px;
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
     border-style: solid;
     border-color: black;
@@ -504,6 +552,8 @@ input:focus {
 @media (min-width: 1000px) {
     .bodyContainer {
         align-self: flex-end;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
         flex-direction: row-reverse;
     }
 
