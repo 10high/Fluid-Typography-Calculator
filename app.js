@@ -46,7 +46,6 @@ const isKeyEnter = event => {
 }
 
 const digitKeyClicked = event => {
-    event.stopPropagation()
     event.preventDefault();
     toggleKeypadPressed(event.target);
     const clickValue = event.target.value;
@@ -59,6 +58,7 @@ const digitKeyClicked = event => {
     if (!inputData.isValidInputField()) {
         return;
     }
+
     const activeInputField = document.activeElement;
     const existingInput = activeInputField.value;
     let selectionStart = activeInputField.selectionStart;
@@ -149,7 +149,7 @@ const calculateClamp = () => {
     }
 }
 
-addEventListener(elementArray(".keypad__button"), "pointerdown", digitKeyClicked);
+addEventListener(elementArray(".keypad__button"), "pointerdown touchstart", digitKeyClicked);
 document.querySelector(".calculator__clipboard").addEventListener("pointerdown", copyToClipboard);
 addEventListener(elementArray(".calculator__inputField"), "beforeinput", captureKeyboardInput);
 addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboardInput);
