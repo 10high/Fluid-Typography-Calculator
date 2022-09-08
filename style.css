@@ -147,9 +147,12 @@ body {
 
 .navbar {
     min-width: 360px;
+    display: -webkit-box;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+            align-items: center;
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 1.5px;
@@ -157,9 +160,12 @@ body {
 
 .navbar__list {
     width: clamp(15.75rem, 4.074074074vw + 14.83333333rem, 18.5rem);
+    display: -webkit-box;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+            align-items: center;
     gap: 1rem;
     margin-right: clamp(4.5625rem, 23.61111111vw + -0.75rem, 20.5rem);
     padding-top: 0.5rem;
@@ -181,10 +187,28 @@ body {
 }
 
 .profilePic__img1 {
-    animation-name: wave1;
-    animation-duration: 2s;
-    animation-timing-function: step-start;
-    animation-iteration-count: infinite;
+    -webkit-animation-name: wave1;
+            animation-name: wave1;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+    -webkit-animation-timing-function: step-start;
+            animation-timing-function: step-start;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes wave1 {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes wave1 {
@@ -202,10 +226,28 @@ body {
 }
 
 .profilePic__img2 {
-    animation-name: wave2;
-    animation-duration: 2s;
-    animation-timing-function: step-start;
-    animation-iteration-count: infinite;
+    -webkit-animation-name: wave2;
+            animation-name: wave2;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+    -webkit-animation-timing-function: step-start;
+            animation-timing-function: step-start;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes wave2 {
+    from {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes wave2 {
@@ -622,9 +664,12 @@ input:focus {
 
 .footer {
     margin-top: 5rem;
+    display: -webkit-box;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: end;
+            align-items: flex-end;
 }
 
 .footer__item {
