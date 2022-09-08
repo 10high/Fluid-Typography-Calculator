@@ -46,6 +46,7 @@ const isKeyEnter = event => {
 }
 
 const digitKeyClicked = event => {
+    event.stopPropagation()
     event.preventDefault();
     toggleKeypadPressed(event.target);
     const clickValue = event.target.value;
