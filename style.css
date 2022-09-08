@@ -145,6 +145,83 @@ body {
     background-image: url(./images/free-squared-paper-vector.png);
 }
 
+.navbar {
+    min-width: 360px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1.5px;
+}
+
+.navbar__list {
+    width: clamp(15.75rem, 4.074074074vw + 14.83333333rem, 18.5rem);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-right: clamp(4.5625rem, 23.61111111vw + -0.75rem, 20.5rem);
+    padding-top: 0.5rem;
+}
+
+.profilePic {
+    position: relative;
+}
+
+.profilePic__img1 {
+    position: relative;
+}
+
+.profilePic__img2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.profilePic__img1 {
+    animation-name: wave1;
+    animation-duration: 2s;
+    animation-timing-function: step-start;
+    animation-iteration-count: infinite;
+}
+
+@keyframes wave1 {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.profilePic__img2 {
+    animation-name: wave2;
+    animation-duration: 2s;
+    animation-timing-function: step-start;
+    animation-iteration-count: infinite;
+}
+
+@keyframes wave2 {
+    from {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 main {
     min-width: 360px;
     display: -webkit-box;
@@ -180,12 +257,12 @@ input:focus {
     display: flex;
     flex-wrap: wrap;
     font-family: 'Sacramento', 'Brush Script MT', cursive;
-    font-size: clamp(40px, 2.222222222vw + 2rem, 64px);
+    font-size: clamp(2.5rem, 2.222222222vw + 2rem, 4rem);
     letter-spacing: 0.03em;
 }
 
 .pageTitle__fluid {
-    margin-right: clamp(5px, 0.6481481481vw + 0.1666666667rem, 12px);
+    margin-right: clamp(0.3125rem, 0.6481481481vw + 0.1666666667rem, 0.75rem);
     border-left-style: solid;
     border-left-width: 1.5px;
     border-left-color: black;
@@ -193,12 +270,12 @@ input:focus {
 }
 
 .pageTitle__typography {
-    margin-top: clamp(15px, 0.6481481481vw + 0.7916666667rem, 22px);
+    margin-top: clamp(0.9375rem, 0.6481481481vw + 0.7916666667rem, 1.375rem);
 }
 
 .pageTitle__lineRight {
-    width: clamp(73px, 23.61111111vw + -0.75rem, 328px);
-    margin-top: clamp(37px, 1.851851852vw + 1.895833333rem, 57px);
+    width: clamp(4.5625rem, 23.61111111vw + -0.75rem, 20.5rem);
+    margin-top: clamp(2.3125rem, 1.851851852vw + 1.895833333rem, 3.5625rem);
     border-top-style: solid;
     border-top-width: 1.5px;
     border-top-color: black;
@@ -209,7 +286,7 @@ input:focus {
     border-left-width: 1.5px;
     border-left-color: black;
     flex-basis: 100%;
-    height: clamp(42px, 1.018518519vw + 2.395833333rem, 53px);
+    height: clamp(2.625rem, 1.018518519vw + 2.395833333rem, 3.3125rem);
 }
 
 .bodyContainer {
@@ -231,8 +308,8 @@ input:focus {
     flex-direction: column;
     -webkit-box-pack: start;
     justify-content: flex-start;
-    width: clamp(252px, 4.074074074vw + 14.83333333rem, 296px);
-    height: clamp(451px, 8.981481481vw + 26.16666667rem, 548px);
+    width: clamp(15.75rem, 4.074074074vw + 14.83333333rem, 18.5rem);
+    height: clamp(28.1875rem, 8.981481481vw + 26.16666667rem, 34.25rem);
     border-style: solid;
     border-color: black;
     border-width: 1.5px;
@@ -254,11 +331,11 @@ input:focus {
     display: -webkit-box;
     display: flex;
     flex-wrap: nowrap;
-    margin-top: clamp(16px, 0.7407407407vw + 0.8333333333rem, 24px);
+    margin-top: clamp(1rem, 0.7407407407vw + 0.8333333333rem, 24px);
 }
 
 .calculator__outputLeftSpacer {
-    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 1.5rem);
 }
 
 .calculator__outputBorder {
@@ -266,8 +343,8 @@ input:focus {
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    width: clamp(220px, 3.333333333vw + 13rem, 256px);
-    height: 46px;
+    width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
+    height: 2.875rem;
     border-style: solid;
     border-color: black;
     border-width: 1.5px;
@@ -290,8 +367,8 @@ input:focus {
 .calculator__clipboard {
     flex-basis: auto;
     flex-shrink: 0;
-    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
-    height: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    width: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
+    height: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
     padding: 2px;
 }
 
@@ -304,7 +381,7 @@ input:focus {
 }
 
 .calculator__outputRightSpacer {
-    width: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    width: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 1.5px;
@@ -321,11 +398,11 @@ input:focus {
 }
 
 .calculator__connectingLine--narrow {
-    height: clamp(8px, 0.3703703704vw + 0.4166666667rem, 12px);
+    height: clamp(0.5rem, 0.3703703704vw + 0.4166666667rem, 0.75rem);
 }
 
 .calculator__connectingLine--wide {
-    height: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    height: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
 }
 
 .calculator__inputWrapper {
@@ -334,8 +411,8 @@ input:focus {
     flex-wrap: nowrap;
     -webkit-box-align: center;
     align-items: center;
-    width: clamp(220px, 3.333333333vw + 13rem, 256px);
-    height: clamp(24px, 0.3703703704vw + 1.416666667rem, 28px);
+    width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
+    height: clamp(1.5rem, 0.3703703704vw + 1.416666667rem, 1.75rem);
 }
 
 .calculator__inputBorder {
@@ -355,7 +432,7 @@ input:focus {
 }
 
 .calculator__inputField {
-    width: 50px;
+    width: 3.125rem;
     text-align: right;
     border-style: solid;
     border-color: black;
@@ -398,9 +475,9 @@ input:focus {
     visibility: hidden;
     position: absolute;
     bottom: 140%;
-    right: -50px;
+    right: -3.125rem;
     z-index: 1;
-    width: 180px;
+    width: 11.25rem;
     background-color: black;
     color: white;
     text-align: center;
@@ -416,7 +493,7 @@ input:focus {
     content: " ";
     position: absolute;
     top: 100%;
-    right: 52px;
+    right: 3.25rem;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
@@ -455,15 +532,15 @@ input:focus {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    width: clamp(220px, 3.333333333vw + 13rem, 256px);
-    height: clamp(184px, 3.333333333vw + 10.75rem, 220px);
+    width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
+    height: clamp(11.5rem, 3.333333333vw + 10.75rem, 13.75rem);
     border-style: solid;
     border-width: 1.5px;
     border-radius: 7px;
 }
 
 .keypad__container {
-    height: clamp(152px, 3.333333333vw + 8.75rem, 188px);
+    height: clamp(9.5rem, 3.333333333vw + 8.75rem, 11.75rem);
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -478,14 +555,14 @@ input:focus {
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    width: clamp(110px, 2.407407407vw + 6.333333333rem, 136px);
+    width: clamp(6.875rem, 2.407407407vw + 6.333333333rem, 8.5rem);
 }
 
 .keypad__button {
-    width: clamp(26px, 0.5555555556vw + 1.5rem, 32px);
-    height: clamp(26px, 0.5555555556vw + 1.5rem, 32px);
+    width: clamp(1.625rem, 0.5555555556vw + 1.5rem, 2rem);
+    height: clamp(1.625rem, 0.5555555556vw + 1.5rem, 2rem);
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(16px, 0.3703703704vw + 0.9166666667rem, 20px);
+    font-size: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
     border-style: solid;
     border-color: black;
     border-width: 1.5px;
@@ -508,15 +585,15 @@ input:focus {
 }
 
 .descriptionConnectingLine {
-    height: 50px;
+    height: 3.125rem;
     border-right-style: solid;
     border-right-color: black;
     border-right-width: 1.5px;
 }
 
 .description {
-    width: 350px;
-    height: 200px;
+    width: 21.875rem;
+    height: 12.5rem;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -543,6 +620,17 @@ input:focus {
     font-style: italic;
 }
 
+.footer {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.footer__item {
+    margin-right: 2rem;
+}
+
 @media (any-hover: none) {
     .keypad__button:hover {
         background-color: hsl(0, 0%, 100%, 0);
@@ -558,13 +646,13 @@ input:focus {
     }
 
     .calculator {
-        margin-right: clamp(250px, 34.09090909vw + -5.681818182rem, 400px);
+        margin-right: clamp(15.625rem, 34.09090909vw + -5.681818182rem, 25rem);
     }
 
     .descriptionConnectingLine {
         align-self: flex-end;
-        width: clamp(50px, 22.72727273vw + -11.07954545rem, 150px);
-        height: 200px;
+        width: clamp(3.125rem, 22.72727273vw + -11.07954545rem, 9.375rem);
+        height: 12.5rem;
         border-right-style: none;
         border-top-style: solid;
         border-top-color: black;
