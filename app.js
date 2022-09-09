@@ -41,11 +41,18 @@ const toggleKeypadPressed = element => {
 const copyToClipboard = () => {
     const calculatorDisplay = document.querySelector(".calculator__output")
     navigator.clipboard.writeText(calculatorDisplay.value);
-    calculatorDisplay.classList.add("calculator__output--highlighted");
+    calculatorDisplay.classList.add("calculator__output--copied");
+    const clipboardTooltip = document.getElementById("tooltipClipboard");
+    clipboardTooltip.style.visibility = "visible";
+    setTimeout(() => {
+        clipboardTooltip.style.visibility = "hidden";
+    }, 2000);
 }
 
 const restoreDisplayStyling = () => {
-    document.querySelector(".calculator__output").classList.remove("calculator__output--highlighted");
+    const calculatorDisplay = document.querySelector(".calculator__output")
+    calculatorDisplay.classList.remove("calculator__output--highlighted");
+    calculatorDisplay.classList.remove("calculator__output--copied");
 }
 
 const isActionKey = event => {

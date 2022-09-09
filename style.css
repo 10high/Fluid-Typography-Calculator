@@ -407,6 +407,11 @@ input:focus {
 
 .calculator__output--highlighted,
 .calculator__output:focus {
+    background-color: rgb(0, 0, 238);
+    color: white;
+}
+
+.calculator__output--copied {
     background-color: black;
     color: white;
 }
@@ -502,6 +507,34 @@ input:focus {
     position: relative;
 }
 
+.calculator__clipboardNotification {
+    visibility: hidden;
+    position: absolute;
+    bottom: 110%;
+    right: -1.125rem;
+    z-index: 1;
+    width: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 4px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1.5px;
+    border-radius: 6px;
+}
+
+.calculator__clipboardNotification:after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    right: 1.4rem;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
 .calculator__infoCircle {
     margin-left: 4px;
     border-radius: 50%;
@@ -547,6 +580,7 @@ input:focus {
     border-style: solid;
     border-color: black transparent transparent transparent;
 }
+
 
 .calculator__infoCircleRem:hover~.calculator__tooltipRem,
 .calculator__infoCircleRem:focus~.calculator__tooltipRem {
