@@ -66,7 +66,7 @@ const forceFocus = event => {
 }
 
 const registerActiveInputField = event => {
-    if (!inputData.isValidInputField(event.target) || event.target.id !== "clipboard") {
+    if (!inputData.isValidInputField(event.target) && event.target.id !== "clipboard") {
         return;
     } else {
         inputData.activeInputField = event.target;
