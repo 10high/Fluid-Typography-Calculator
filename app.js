@@ -38,7 +38,15 @@ const toggleKeypadPressed = element => {
     }, 300);
 }
 
-const copyToClipboard = () => navigator.clipboard.writeText(document.querySelector(".calculator__output").value);
+const copyToClipboard = () => {
+    const calculatorDisplay = document.querySelector(".calculator__output")
+    navigator.clipboard.writeText(calculatorDisplay.value);
+    calculatorDisplay.classList.add("calculator__output--copied");
+}
+
+const restoreDisplayStyling = () => {
+    document.querySelector(".calculator__output").classList.remove("calculator__output--copied");
+}
 
 const isActionKey = event => {
     if (event.key === "Enter") {
@@ -66,7 +74,7 @@ const forceFocus = event => {
 }
 
 const registerActiveInputField = event => {
-    if (!inputData.isValidInputField(event.target) && event.target.id !== "clipboard") {
+    if (!inputData.isValidInputField(event.target) && event.target.id !== "clipboard" && event.target.id !== "calculatorDisplay") {
         return;
     } else {
         inputData.activeInputField = event.target;
@@ -186,4 +194,6 @@ document.addEventListener("keydown", isActionKey);
 addEventListener(elementArray(".calculator__inputField"), "blur", forceFocus);
 addEventListener(elementArray(".calculator__inputField"), "pointerdown", registerActiveInputField);
 document.getElementById("clipboard").addEventListener("pointerdown", registerActiveInputField);
+document.getElementById("clipboard").addEventListener("blur", restoreDisplayStyling);
+document.getElementById("calculatorDisplay").addEventListener("pointerdown", registerActiveInputField);
 
