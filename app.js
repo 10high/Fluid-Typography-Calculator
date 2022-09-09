@@ -52,7 +52,7 @@ const isKeyEnter = event => {
 
 
 const keepFocus = event => {
-    if (event.target === inputData.activeInputField) {
+    if (event.target.id === inputData.activeInputField.id) {
         inputData.activeInputField.focus();
     }
 }
@@ -60,8 +60,9 @@ const keepFocus = event => {
 const switchFocus = event => {
     if (!inputData.isValidInputField(event.target)) {
         return;
+    } else {
+        inputData.activeInputField = event.target;
     }
-    inputData.activeInputField = event.target;
 }
 
 const digitKeyClicked = event => {
