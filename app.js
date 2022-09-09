@@ -52,8 +52,13 @@ const isKeyEnter = event => {
 
 
 const keepFocus = event => {
-    if (event.target.id === inputData.activeInputField.id) {
-        inputData.activeInputField.focus();
+    if (event.target === inputData.activeInputField) {
+        const forceFocus = setInterval(() => {
+            inputData.activeInputField.focus();
+        }, 20);
+        setTimeout(() => {
+            clearInterval(forceFocus)
+        }, 3000);
     }
 }
 
