@@ -74,11 +74,13 @@ const digitKeyClicked = event => {
 }
 
 const captureKeyboardInput = event => {
+    console.log("caputureKeyboardInput called");
     existingInput = event.target.value;
     inputData.existingInput = existingInput;
 }
 
 const monitorKeyboardInput = event => {
+    console.log("monitorKeyboardInput called");
     const newInput = event.data;
     const insertedText = Array.from(event.target.value);
     if (newInput === null) {
@@ -149,7 +151,7 @@ const calculateClamp = () => {
     }
 }
 
-addEventListener(elementArray(".keypad__button"), "pointerdown touchstart", digitKeyClicked);
+addEventListener(elementArray(".keypad__button"), "pointerdown", digitKeyClicked);
 document.querySelector(".calculator__clipboard").addEventListener("pointerdown", copyToClipboard);
 addEventListener(elementArray(".calculator__inputField"), "beforeinput", captureKeyboardInput);
 addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboardInput);
