@@ -181,8 +181,8 @@ const calculateClamp = () => {
         const outputScreen = document.querySelector(".calculator__output");
         outputScreen.removeAttribute("readonly");
         outputScreen.value = `clamp(${inputFieldValues.minClampInput / inputFieldValues.remInput}rem, ${vw}vw + ${rem}rem, ${inputFieldValues.maxClampInput / inputFieldValues.remInput}rem)`;
-        outputScreen.focus();
         outputScreen.setAttribute("readonly", "readonly");
+        outputScreen.focus();
     }
 }
 
