@@ -57,7 +57,10 @@ const keepFocus = event => {
     }
 }
 
-const switchFocus = event => inputData.activeInputField = event.target;
+const switchFocus = event => {
+    event.target.inputMode = "none";
+    inputData.activeInputField = event.target;
+}
 
 const digitKeyClicked = event => {
     toggleKeypadPressed(event.target);
