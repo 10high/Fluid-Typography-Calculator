@@ -40,7 +40,7 @@ const toggleKeypadPressed = element => {
 
 const copyToClipboard = () => navigator.clipboard.writeText(document.querySelector(".calculator__output").value);
 
-const isKeyEnter = event => {
+const isActionKey = event => {
     if (event.key === "Enter") {
         calculateClamp();
         return;
@@ -51,18 +51,23 @@ const isKeyEnter = event => {
 }
 
 
-const keepFocus = event => {
+const forceFocus = event => {
     if (event.target === inputData.activeInputField) {
-        const forceFocus = setInterval(() => {
+        const repeatForceFocus = setInterval(() => {
             inputData.activeInputField.focus();
-        }, 20);
-        setTimeout(() => {
-            clearInterval(forceFocus)
-        }, 3000);
+            console.log("forceFocus active");
+        }, 1);
+        const cancelForceFocus = setInterval(() => {
+            if (document.activeElement === inputData.activeInputField) {
+                console.log("forceFocus cleared");
+                clearInterval(repeatForceFocus);
+                clearInterval(cancelForceFocus);
+            }
+        }, 2);
     }
 }
 
-const switchFocus = event => {
+const registerActiveInputField = event => {
     if (!inputData.isValidInputField(event.target)) {
         return;
     } else {
@@ -181,7 +186,7 @@ addEventListener(elementArray(".keypad__button"), "pointerdown", digitKeyClicked
 document.querySelector(".calculator__clipboard").addEventListener("pointerdown", copyToClipboard);
 addEventListener(elementArray(".calculator__inputField"), "beforeinput", captureKeyboardInput);
 addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboardInput);
-document.addEventListener("keydown", isKeyEnter);
-addEventListener(elementArray(".calculator__inputField"), "blur", keepFocus);
-addEventListener(elementArray(".calculator__inputField"), "pointerdown", switchFocus);
+document.addEventListener("keydown", isActionKey);
+addEventListener(elementArray(".calculator__inputField"), "blur", forceFocus);
+addEventListener(elementArray(".calculator__inputField"), "pointerdown", registerActiveInputField);
 
