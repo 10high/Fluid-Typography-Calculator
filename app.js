@@ -41,11 +41,11 @@ const toggleKeypadPressed = element => {
 const copyToClipboard = () => {
     const calculatorDisplay = document.querySelector(".calculator__output")
     navigator.clipboard.writeText(calculatorDisplay.value);
-    calculatorDisplay.classList.add("calculator__output--copied");
+    calculatorDisplay.classList.add("calculator__output--highlighted");
 }
 
 const restoreDisplayStyling = () => {
-    document.querySelector(".calculator__output").classList.remove("calculator__output--copied");
+    document.querySelector(".calculator__output").classList.remove("calculator__output--highlighted");
 }
 
 const isActionKey = event => {
@@ -182,17 +182,21 @@ const calculateClamp = () => {
         outputScreen.removeAttribute("readonly");
         outputScreen.value = `clamp(${inputFieldValues.minClampInput / inputFieldValues.remInput}rem, ${vw}vw + ${rem}rem, ${inputFieldValues.maxClampInput / inputFieldValues.remInput}rem)`;
         outputScreen.setAttribute("readonly", "readonly");
-        outputScreen.focus();
+        const calculatorDisplay = document.querySelector(".calculator__output");
+        calculatorDisplay.classList.add("calculator__output--highlighted")
+        setTimeout(() => {
+            calculatorDisplay.classList.remove("calculator__output--highlighted")
+        }, 3000);
     }
 }
 
 addEventListener(elementArray(".keypad__button"), "pointerdown", digitKeyClicked);
-document.querySelector(".calculator__clipboard").addEventListener("pointerdown", copyToClipboard);
 addEventListener(elementArray(".calculator__inputField"), "beforeinput", captureKeyboardInput);
 addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboardInput);
 document.addEventListener("keydown", isActionKey);
 addEventListener(elementArray(".calculator__inputField"), "blur", forceFocus);
 addEventListener(elementArray(".calculator__inputField"), "pointerdown", registerActiveInputField);
+document.getElementById("clipboard").addEventListener("pointerdown", copyToClipboard);
 document.getElementById("clipboard").addEventListener("pointerdown", registerActiveInputField);
 document.getElementById("clipboard").addEventListener("blur", restoreDisplayStyling);
 document.getElementById("calculatorDisplay").addEventListener("pointerdown", registerActiveInputField);

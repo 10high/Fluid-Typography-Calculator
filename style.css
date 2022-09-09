@@ -405,7 +405,7 @@ input:focus {
     text-overflow: ellipsis;
 }
 
-.calculator__output--copied,
+.calculator__output--highlighted,
 .calculator__output:focus {
     background-color: black;
     color: white;
