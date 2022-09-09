@@ -1,5 +1,6 @@
 const inputData = {
     existingInput: "",
+    activeInputField: undefined,
     isDigitKey: key => {
         const digitKeys = {
             0: "#key0",
@@ -42,11 +43,23 @@ const copyToClipboard = () => navigator.clipboard.writeText(document.querySelect
 const isKeyEnter = event => {
     if (event.key === "Enter") {
         calculateClamp();
+        return;
+    }
+    if (event.key === "Tab") {
+        inputData.activeInputField = undefined;
     }
 }
 
+
+const keepFocus = event => {
+    if (event.target === inputData.activeInputField) {
+        inputData.activeInputField.focus();
+    }
+}
+
+const switchFocus = event => inputData.activeInputField = event.target;
+
 const digitKeyClicked = event => {
-    event.preventDefault();
     toggleKeypadPressed(event.target);
     const clickValue = event.target.value;
     if (!inputData.isDigitKey(clickValue)) {
@@ -55,11 +68,14 @@ const digitKeyClicked = event => {
         }
         return;
     }
-    if (!inputData.isValidInputField()) {
+
+    const activeInputField = document.activeElement;
+    if (inputData.isValidInputField(activeInputField)) {
+        inputData.activeInputField = activeInputField;
+    } else {
         return;
     }
 
-    const activeInputField = document.activeElement;
     const existingInput = activeInputField.value;
     let selectionStart = activeInputField.selectionStart;
     let selectionEnd = activeInputField.selectionEnd;
@@ -69,7 +85,6 @@ const digitKeyClicked = event => {
         activeInputField.value = activeInputField.value.substring(0, selectionStart)
             + clickValue
             + activeInputField.value.substring(selectionEnd, activeInputField.value.length);
-        return;
     }
 }
 
@@ -156,4 +171,6 @@ document.querySelector(".calculator__clipboard").addEventListener("pointerdown",
 addEventListener(elementArray(".calculator__inputField"), "beforeinput", captureKeyboardInput);
 addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboardInput);
 document.addEventListener("keydown", isKeyEnter);
+addEventListener(elementArray(".calculator__inputField"), "blur", keepFocus);
+addEventListener(elementArray(".calculator__inputField"), "pointerdown", switchFocus);
 

@@ -166,7 +166,7 @@ body {
     -webkit-box-align: center;
     align-items: center;
     gap: 1rem;
-    margin-right: clamp(4.5625rem, 23.61111111vw + -0.75rem, 20.5rem);
+    margin-right: clamp(1.5rem, 21.38888888888889vw + -3.3125rem, 15.9375rem);
     padding-top: 0.5rem;
 }
 
