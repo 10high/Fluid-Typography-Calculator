@@ -55,11 +55,9 @@ const forceFocus = event => {
     if (event.target === inputData.activeInputField) {
         const repeatForceFocus = setInterval(() => {
             inputData.activeInputField.focus();
-            console.log("forceFocus active");
         }, 1);
         const cancelForceFocus = setInterval(() => {
             if (document.activeElement === inputData.activeInputField) {
-                console.log("forceFocus cleared");
                 clearInterval(repeatForceFocus);
                 clearInterval(cancelForceFocus);
             }
@@ -105,13 +103,11 @@ const digitKeyClicked = event => {
 }
 
 const captureKeyboardInput = event => {
-    console.log("caputureKeyboardInput called");
     existingInput = event.target.value;
     inputData.existingInput = existingInput;
 }
 
 const monitorKeyboardInput = event => {
-    console.log("monitorKeyboardInput called");
     const newInput = event.data;
     const insertedText = Array.from(event.target.value);
     if (newInput === null) {
