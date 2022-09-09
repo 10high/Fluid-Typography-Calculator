@@ -66,7 +66,7 @@ const forceFocus = event => {
 }
 
 const registerActiveInputField = event => {
-    if (!inputData.isValidInputField(event.target)) {
+    if (!inputData.isValidInputField(event.target) || event.target.id !== "clipboard") {
         return;
     } else {
         inputData.activeInputField = event.target;
@@ -185,4 +185,5 @@ addEventListener(elementArray(".calculator__inputField"), "input", monitorKeyboa
 document.addEventListener("keydown", isActionKey);
 addEventListener(elementArray(".calculator__inputField"), "blur", forceFocus);
 addEventListener(elementArray(".calculator__inputField"), "pointerdown", registerActiveInputField);
+document.getElementById("clipboard").addEventListener("pointerdown", registerActiveInputField);
 
