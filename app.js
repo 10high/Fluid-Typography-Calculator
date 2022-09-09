@@ -58,7 +58,9 @@ const keepFocus = event => {
 }
 
 const switchFocus = event => {
-    event.target.inputMode = "none";
+    if (!inputData.isValidInputField(event.target)) {
+        return;
+    }
     inputData.activeInputField = event.target;
 }
 
