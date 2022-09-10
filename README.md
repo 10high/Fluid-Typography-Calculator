@@ -1,6 +1,6 @@
 # Fluid Typography Calculator
 
-## Design Screenshot
+## Figma Design Screenshot
 ![Fluid Typography Calculator Design Screenshot](./images/FluidTypographyDesign_Screenshot.png)
 
 
@@ -8,10 +8,11 @@
 
 The design was relatively simple and was fairly straightforward to implement. The biggest "issue" I had was with the `background-image`. I wanted to set the opacity to 50%, and initially tried to do so by setting it as the `background-image` with `:after` on the `body` element. However, it wouldn't cover the whole screen at extremely small widths. I noticed in the dev tools that the body element was smaller than the screen, and I'm still not sure why. I compromised by simply modifying the opacity of the image in GIMP and setting it as the `background-image` on the `body` element itself.
 
-I had the greatest difficulty getting the app to behave correctly on mobile devices, specifically with restricting input. After having coded everything and having it work exactly how I wanted it to on desktop, I then discovered that the behavior was completely different on mobile.
+I had the greatest difficulty getting the app to behave correctly on **mobile** devices, specifically with restricting input. After having coded everything and having it work exactly how I wanted it to on desktop, I then discovered that the behavior was completely different on mobile.
 
-**The main hurdles on mobile were:**
-1. Restricting input length and preventing users from entering letters or pasting in values that are too long or which contain invalid characters.
+**The main hurdles on MOBILE were:**
+1. Restricting input length and preventing users from entering letters or pasting in values that are too long or which contain invalid characters. 
+    Whereas on desktop, simply using  `preventDefault()` allowed me to prevent invalid input, I could not get this to work on mobile at all.
     I solved this by using the event `beforeinput` to assign the existing input value to an object property. Then on `input`, I validate the new value. If it is invalid, I replace it with the old value.
 
 2. Preventing loss of focus from input fields when tapping on an onscreen digit key.
@@ -23,14 +24,14 @@ I had the greatest difficulty getting the app to behave correctly on mobile devi
 ## Features I may add in future
 
 1. I'm annoyed by myself that I failed to add a delete button to the onscreen keypad. 
-    I made this "app" for myself and I will be using it only on desktop, so I don't really need an onscreen delete button, one is needed for anyone who wants to use this app on mobile.
+    I made this "app" for myself and I will be using it only on desktop, so I don't really need an onscreen delete button, but one is needed for anyone who wants to use this app on mobile.
 
 2. An option to append the original pixel inputs inside a comment after the calculated output.
     This would make it much easier to track the original values and allow easier experimentation with sizes.
 
 ## Conclusion
 
-Something I realized quite quickly when I began on the JavaScript is my lack of experience meant that I also lacked the ability to see the full extent of the implications of the features that I wanted. Whereas I am now relatively secure in looking at a design and knowing in advance what I need to do to implement it, when I began on each feature, I quickly realized that there were X number of considerations that I had failed to into account in advance.
+Something I realized quite quickly when I began on the JavaScript is my lack of experience meant that I also lacked the ability to see the full extent of the implications of the features that I wanted. Whereas I am now relatively secure in looking at a design and knowing in advance what I need to do to implement it, when I began on each feature in JavaScript, I quickly realized that there were X number of considerations that I had failed to into account in advance.
 
 Overall, this small project has been excellent in helping me to start getting a feel for that and for gaining a better understanding of how things work together.
 
@@ -50,10 +51,10 @@ Overall, this small project has been excellent in helping me to start getting a 
 
 - [x] limit character input to 4
     - [-] while also allowing for switching between keyboard and GUI
-            //I failed at this on mobile for the reasons noted above.
+            //*I failed at this on mobile for the reasons noted above.*
 
 - [-] if first number is 0, removes it from front.
-            // I actually implemented this in the original version, but didn't redo it when I switched to the new input validation system because I thought it's unnecessary overkill.
+            // *I actually implemented this in the original version, but didn't redo it when I switched to the new input validation system because I thought it's unnecessary overkill.*
 
 - [x] only permitted characters (digits) allowed for input
 
