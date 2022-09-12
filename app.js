@@ -14,7 +14,12 @@ const inputData = {
             8: "#key8",
             9: "#key9"
         }
-        return Object.hasOwn(digitKeys, key) ? digitKeys[key] : false;
+        try {
+            return Object.hasOwn(digitKeys, key) ? digitKeys[key] : false;
+        }
+        catch {
+            return Object.hasOwnProperty(digitKeys, key) ? digitKeys[key] : false;
+        }
     },
     inputFieldIDs: ["remInput", "minScreenInput", "maxScreenInput", "minClampInput", "maxClampInput"],
 
