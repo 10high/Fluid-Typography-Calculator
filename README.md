@@ -1,5 +1,7 @@
 # Fluid Typography Calculator
 
+You can visit the site here: [Fluid Typography Calculator](https://10high.github.io/Fluid-Typography-Calculator/)
+
 ## Figma Design Screenshot
 ![Fluid Typography Calculator Design Screenshot](./images/FluidTypographyDesign_Screenshot.png)
 
