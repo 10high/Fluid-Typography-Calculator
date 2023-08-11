@@ -1,0 +1,29 @@
+.calculator__inputBorder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 1.5px;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+}
+
+.calculator__inputField {
+  width: 50px;
+  text-align: right;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: hsl(0, 0%, 100%, 0);
+  padding: 2px 2px 2px 4px;
+}
+
+.calculator__inputField--invalid {
+  border-color: red !important;
+}
+
+.calculator__measureUnit {
+  text-decoration: none;
+}
