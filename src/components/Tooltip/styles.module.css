@@ -1,0 +1,47 @@
+.calculator__tooltipContainer {
+  position: relative;
+  width: 16px;
+}
+
+.calculator__infoCircle {
+  border-radius: 50%;
+}
+
+.calculator__infoCircle:hover {
+  background-color: #b8b8b8;
+  cursor: pointer;
+}
+
+.calculator__infoCircle:focus {
+  background-color: #b8b8b8;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: black;
+}
+
+.calculator__tooltip {
+  position: absolute;
+  bottom: 140%;
+  right: -3.125rem;
+  z-index: 1;
+  width: 11.25rem;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+  border-style: solid;
+  border-color: white;
+  border-width: 1.5px;
+  border-radius: 6px;
+}
+
+.calculator__tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  right: 3.25rem;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
