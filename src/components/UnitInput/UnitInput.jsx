@@ -1,28 +1,43 @@
-import { useState } from "react";
 import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
 UnitInput.propTypes = {
   children: PropTypes.any,
-  defaultInput: PropTypes.string,
+  inputValue: PropTypes.string,
+  fieldId: PropTypes.string,
+  setInputFieldObjs: PropTypes.func,
+  setInputWithFocusId: PropTypes.func,
 };
 
-export default function UnitInput({ defaultInput = "0", children }) {
-  const [input, setInput] = useState(defaultInput);
-
-  function handleInputOnChange({ target }) {
-    const newInput = Number(target.value);
-    if (newInput >= 0 && newInput <= 9999) setInput(`${newInput}`);
+export default function UnitInput({
+  fieldId,
+  setInputFieldObjs,
+  setInputWithFocusId,
+  inputValue,
+  children,
+}) {
+  function handleInputFieldOnChange(fieldId, inputValue) {
+    const newInput = Number(inputValue);
+    if (newInput >= 0 && newInput <= 9999) {
+      setInputFieldObjs((objs) =>
+        objs.map((obj) =>
+          obj.fieldId === fieldId ? { ...obj, inputValue: `${newInput}` } : obj
+        )
+      );
+    }
   }
 
   return (
     <div className={Styles.calculator__inputBorder}>
-      <label htmlFor="unitInputField">{children}</label>
+      <label htmlFor={fieldId}>{children}</label>
       <input
-        id="unitInputField"
+        id={fieldId}
         type="text"
-        value={input}
-        onChange={(event) => handleInputOnChange(event)}
+        value={inputValue}
+        onChange={(event) =>
+          handleInputFieldOnChange(fieldId, event.target.value)
+        }
+        onFocus={() => setInputWithFocusId(fieldId)}
       />
       <abbr className={Styles.calculator__measureUnit} title="pixels">
         px
