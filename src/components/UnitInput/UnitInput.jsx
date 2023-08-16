@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
@@ -16,6 +17,8 @@ export default function UnitInput({
   inputValue,
   children,
 }) {
+  const [hasLostFocus, setHasLostFocus] = useState(false);
+
   function handleInputFieldOnChange(fieldId, inputValue) {
     const newInput = Number(inputValue);
     if (newInput >= 0 && newInput <= 9999) {
@@ -27,6 +30,23 @@ export default function UnitInput({
     }
   }
 
+  function handleOnBlur() {
+    setInputWithFocusId(fieldId);
+    setHasLostFocus(true);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInputWithFocusId("");
+    }, 300);
+
+    setHasLostFocus(false);
+
+    return function () {
+      clearTimeout(timer);
+    };
+  }, [hasLostFocus, setInputWithFocusId, setHasLostFocus]);
+
   return (
     <div className={Styles.calculator__inputBorder}>
       <label htmlFor={fieldId}>{children}</label>
@@ -37,7 +57,7 @@ export default function UnitInput({
         onChange={(event) =>
           handleInputFieldOnChange(fieldId, event.target.value)
         }
-        onFocus={() => setInputWithFocusId(fieldId)}
+        onBlur={handleOnBlur}
       />
       <abbr className={Styles.calculator__measureUnit} title="pixels">
         px
