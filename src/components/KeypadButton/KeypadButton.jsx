@@ -14,8 +14,8 @@ export default function KeypadButton({
   setInputFieldObjs,
   inputWithFocusId,
 }) {
-  const [buttonIsClicked, setButtonIsClicked] = useState(false);
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
+  const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
 
   function handleOnClick({ target }) {
     if (inputWithFocusId === "") return;
@@ -33,7 +33,6 @@ export default function KeypadButton({
       );
 
     const newInput = Number(`${updatedValue}`);
-
     if (newInput >= 0 && newInput <= 9999) {
       setInputFieldObjs((objs) =>
         objs.map((obj) =>
@@ -42,29 +41,30 @@ export default function KeypadButton({
             : obj
         )
       );
-      setButtonIsClicked(true);
+      setInputCaretPosition(selectionEnd - (selectionEnd - selectionStart) + 1);
+      setKeypadButtonClicked(true);
     }
-    selectionEnd - selectionStart === 0
-      ? setInputCaretPosition(selectionEnd + 1)
-      : setInputCaretPosition(
-          selectionEnd - (selectionEnd - selectionStart) + 1
-        );
 
     elementWithFocus.focus();
   }
 
   useEffect(
-    function handleFocus() {
-      if (buttonIsClicked) {
+    function () {
+      if (keypadButtonClicked) {
         const elementWithFocus = document.getElementById(inputWithFocusId);
         elementWithFocus.setSelectionRange(
           inputCaretPosition,
           inputCaretPosition
         );
-        setButtonIsClicked(false);
+        setKeypadButtonClicked(false);
       }
     },
-    [buttonIsClicked, inputWithFocusId, inputCaretPosition]
+    [
+      keypadButtonClicked,
+      inputWithFocusId,
+      inputCaretPosition,
+      setKeypadButtonClicked,
+    ]
   );
 
   return (
