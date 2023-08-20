@@ -1,0 +1,23 @@
+.keypad__button {
+  width: clamp(1.625rem, 0.5555555556vw + 1.5rem, 2rem);
+  height: clamp(1.625rem, 0.5555555556vw + 1.5rem, 2rem);
+  font-size: clamp(1rem, 0.3703703704vw + 0.9166666667rem, 1.25rem);
+  border-style: solid;
+  border-color: black;
+  border-width: 1.5px;
+  border-radius: 4px;
+  background-color: hsl(0, 0%, 100%, 0);
+}
+
+.keypad__button:hover {
+  background-color: #b8b8b8;
+  cursor: pointer;
+}
+
+.calculator__clipboard:active,
+.keypad__button--pressed {
+  font-weight: 700 !important;
+  border-width: 2px !important;
+  background-color: #a1a1a1 !important;
+  box-shadow: 0px 0px 1px 1px #929292 !important;
+}
