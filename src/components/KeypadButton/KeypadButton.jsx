@@ -75,6 +75,7 @@ export default function KeypadButton({
       aria-hidden="true"
       value={buttonValue}
       onClick={(event) => handleOnClick(event)}
+      data-testid="keypadButton"
     ></input>
   );
 }
