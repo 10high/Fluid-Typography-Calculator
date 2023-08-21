@@ -93,4 +93,37 @@ describe("tests keypad interactions with input fields", () => {
       expect(allInputFields[0]).toHaveValue("16");
     }, 400);
   });
+
+  it("test: keypad C button 1) clears all input 2)resets '1 rem' to '16' 3)returns focus to previous input", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const user = userEvent.setup();
+
+    //act
+    await user.click(allInputFields[0]);
+    await user.click(allKeypadKeys[1]);
+    await user.click(allInputFields[1]);
+    await user.click(allKeypadKeys[2]);
+    await user.click(allInputFields[2]);
+    await user.click(allKeypadKeys[3]);
+    await user.click(allInputFields[3]);
+    await user.click(allKeypadKeys[4]);
+    await user.click(allInputFields[4]);
+    await user.click(allKeypadKeys[5]);
+    //click keypad clear button
+    await user.click(allKeypadKeys[10]);
+
+    //assert
+    //that input field have correct values
+    expect(allInputFields[0]).toHaveValue("16");
+    expect(allInputFields[1]).toHaveValue("0");
+    expect(allInputFields[2]).toHaveValue("0");
+    expect(allInputFields[3]).toHaveValue("0");
+    expect(allInputFields[4]).toHaveValue("0");
+
+    //that focus is returned last input field
+    expect(allInputFields[4]).toHaveFocus();
+  });
 });
