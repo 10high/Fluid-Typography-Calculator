@@ -64,6 +64,10 @@ const unitInputItemWrapperKey = [
   self.crypto.randomUUID(),
 ];
 
+const miscKeys = {
+  clearButton: self.crypto.randomUUID(),
+};
+
 function App() {
   const [inputFieldObjs, setInputFieldObjs] = useState(inputFields);
   const [inputWithFocusId, setInputWithFocusId] = useState("");
@@ -101,6 +105,12 @@ function App() {
             inputWithFocusId={inputWithFocusId}
           />
         ))}
+        <KeypadButton
+          buttonValue="C"
+          setInputFieldObjs={setInputFieldObjs}
+          key={miscKeys.clearButton}
+          inputWithFocusId={inputWithFocusId}
+        />
       </div>
     </div>
   );

@@ -17,8 +17,7 @@ export default function KeypadButton({
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
 
-  function handleOnClick({ target }) {
-    if (inputWithFocusId === "") return;
+  function handleDigitButton(digitValue) {
     const elementWithFocus = document.getElementById(inputWithFocusId);
 
     const selectionStart = elementWithFocus.selectionStart;
@@ -26,7 +25,7 @@ export default function KeypadButton({
 
     const updatedValue =
       elementWithFocus.value.substring(0, selectionStart) +
-      target.value +
+      digitValue +
       elementWithFocus.value.substring(
         selectionEnd,
         elementWithFocus.value.length
@@ -46,6 +45,27 @@ export default function KeypadButton({
     }
 
     elementWithFocus.focus();
+  }
+
+  function handleCButton() {
+    const elementWithFocus = document.getElementById(inputWithFocusId);
+    setInputFieldObjs((objs) =>
+      objs.map((obj) =>
+        obj.text === "1 rem:"
+          ? { ...obj, inputValue: "16" }
+          : { ...obj, inputValue: "0" }
+      )
+    );
+    elementWithFocus.focus();
+  }
+
+  function handleOnClick({ target }) {
+    if (inputWithFocusId === "") return;
+    if (target.value === "C") {
+      handleCButton();
+      return;
+    }
+    handleDigitButton(target.value);
   }
 
   useEffect(
