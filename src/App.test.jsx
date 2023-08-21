@@ -71,4 +71,26 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[1]).toHaveValue("154");
     expect(allInputFields[1].selectionEnd).toBe(2);
   });
+
+  it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const allTooltips = screen.getAllByRole("tooltip");
+    const user = userEvent.setup();
+
+    //act
+    await user.click(allInputFields[0]);
+    await user.click(allTooltips[0]);
+    // a 300 setTimeout that clears input ID on blur necessitates a timeout here
+    setTimeout(() => {
+      user.click(allKeypadKeys[5]);
+      user.keyboard("6");
+
+      //assert
+      // allInputFields[0] has a default value of 16
+      expect(allInputFields[0]).toHaveValue("16");
+    }, 400);
+  });
 });
