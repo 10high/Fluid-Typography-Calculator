@@ -45,7 +45,7 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[1]).toHaveValue("1234");
   });
 
-  it("tests that 1) a digit added from the keypad is entered at the correct position 2)replaces any digits selected in input field 3) the caret position is correct after re-render", async () => {
+  it("tests that 1) a digit added from the keypad is entered at the correct position 2)replaces any digits selected in input field 3) the caret position is correct after re-render, 4) focus is returned to last input", async () => {
     //arrange
     render(<App />);
     const allInputFields = screen.getAllByRole("textbox");
@@ -70,6 +70,7 @@ describe("tests keypad interactions with input fields", () => {
     //assert
     expect(allInputFields[1]).toHaveValue("154");
     expect(allInputFields[1].selectionEnd).toBe(2);
+    expect(allInputFields[1]).toHaveFocus();
   });
 
   it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
