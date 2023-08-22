@@ -127,4 +127,60 @@ describe("tests keypad interactions with input fields", () => {
     //that focus is returned last input field
     expect(allInputFields[4]).toHaveFocus();
   });
+
+  it("tests that keypad 'delete' 1) removes all selected digits when multiple selected 2) that the caret is correctly positioned at end, 4) focus is returned to last input", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const user = userEvent.setup();
+
+    //act
+    //sets focus on input field
+    await user.click(allInputFields[4]);
+    //clicks keypad digits
+    await user.click(allKeypadKeys[0]);
+    await user.click(allKeypadKeys[1]);
+    await user.click(allKeypadKeys[2]);
+    await user.click(allKeypadKeys[3]);
+    await user.click(allKeypadKeys[4]);
+    //selects middle two digits from inputfield
+    allInputFields[4].setSelectionRange(1, 3);
+    //fireEvent.select(allInputFields[4]);  !!!!!!!!
+    //click delete
+    await user.click(allKeypadKeys[10]);
+
+    //assert
+    expect(allInputFields[4]).toHaveValue("14");
+    expect(allInputFields[4].selectionEnd).toBe(1);
+    expect(allInputFields[4]).toHaveFocus();
+  });
+
+  it("tests that keypad 'delete' 1) removes 1 digit to the left when no digits selected 2) that the caret is correctly positioned at end, 3) focus is returned to last input", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const user = userEvent.setup();
+
+    //act
+    //sets focus on input field
+    await user.click(allInputFields[4]);
+    //clicks keypad digits
+    await user.click(allKeypadKeys[0]);
+    await user.click(allKeypadKeys[1]);
+    await user.click(allKeypadKeys[2]);
+    await user.click(allKeypadKeys[3]);
+    await user.click(allKeypadKeys[4]);
+    //sets caret position
+    allInputFields[4].setSelectionRange(2, 2);
+    //fireEvent.select(allInputFields[4]);  !!!!!!!!
+    //click delete
+    await user.click(allKeypadKeys[10]);
+
+    //assert
+    expect(allInputFields[4]).toHaveValue("134");
+    expect(allInputFields[4].selectionEnd).toBe(1);
+    expect(allInputFields[4]).toHaveFocus();
+  });
 });
