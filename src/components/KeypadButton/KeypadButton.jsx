@@ -59,10 +59,53 @@ export default function KeypadButton({
     elementWithFocus.focus();
   }
 
+  function handleDeleteButton() {
+    const elementWithFocus = document.getElementById(inputWithFocusId);
+
+    const selectionStart = elementWithFocus.selectionStart;
+    const selectionEnd = elementWithFocus.selectionEnd;
+
+    let updatedValue = "";
+
+    if (selectionEnd - selectionStart > 0) {
+      updatedValue =
+        elementWithFocus.value.substring(0, selectionStart) +
+        elementWithFocus.value.substring(
+          selectionEnd,
+          elementWithFocus.value.length
+        );
+      setInputCaretPosition(selectionStart);
+    } else {
+      updatedValue =
+        elementWithFocus.value.substring(0, selectionStart - 1) +
+        elementWithFocus.value.substring(
+          selectionEnd,
+          elementWithFocus.value.length
+        );
+      setInputCaretPosition(selectionStart - 1);
+    }
+
+    setInputFieldObjs((objs) =>
+      objs.map((obj) =>
+        obj.fieldId === inputWithFocusId
+          ? { ...obj, inputValue: `${updatedValue}` }
+          : obj
+      )
+    );
+
+    setKeypadButtonClicked(true);
+
+    elementWithFocus.focus();
+  }
+
   function handleOnClick({ target }) {
     if (inputWithFocusId === "") return;
     if (target.value === "C") {
       handleCButton();
+      return;
+    }
+    if (target.value === "←") {
+      handleDeleteButton();
       return;
     }
     handleDigitButton(target.value);
