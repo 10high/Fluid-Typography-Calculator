@@ -11,15 +11,15 @@ describe("tests keyboard interactions with input fields", () => {
     const user = userEvent.setup();
 
     //act
-    await user.type(allInputFields[1], "020");
-    await user.type(allInputFields[2], "0203456");
+    await user.type(allInputFields[2], "020");
+    await user.type(allInputFields[3], "0203456");
     const updatedAllInputFields = await screen.findAllByRole("textbox");
 
     //assert
     //tests that leading zeroes are removed
-    expect(updatedAllInputFields[1]).toHaveValue("20");
+    expect(updatedAllInputFields[2]).toHaveValue("20");
     //tests that input length does not exceed 4 digits
-    expect(updatedAllInputFields[2]).toHaveValue("2034");
+    expect(updatedAllInputFields[3]).toHaveValue("2034");
   });
 });
 
@@ -33,7 +33,7 @@ describe("tests keypad interactions with input fields", () => {
 
     //act
     //sets focus on input field
-    await user.click(allInputFields[1]);
+    await user.click(allInputFields[2]);
     //clicks keypad digits
     await user.click(allKeypadKeys[0]);
     await user.click(allKeypadKeys[1]);
@@ -42,7 +42,7 @@ describe("tests keypad interactions with input fields", () => {
     await user.click(allKeypadKeys[4]);
 
     //assert
-    expect(allInputFields[1]).toHaveValue("1234");
+    expect(allInputFields[2]).toHaveValue("1234");
   });
 
   it("tests that 1) a digit added from the keypad is entered at the correct position 2)replaces any digits selected in input field 3) the caret position is correct after re-render, 4) focus is returned to last input", async () => {
@@ -54,7 +54,7 @@ describe("tests keypad interactions with input fields", () => {
 
     //act
     //sets focus on input field
-    await user.click(allInputFields[1]);
+    await user.click(allInputFields[2]);
     //clicks keypad digits
     await user.click(allKeypadKeys[0]);
     await user.click(allKeypadKeys[1]);
@@ -62,15 +62,15 @@ describe("tests keypad interactions with input fields", () => {
     await user.click(allKeypadKeys[3]);
     await user.click(allKeypadKeys[4]);
     //selects middle two digits from inputfield
-    allInputFields[1].setSelectionRange(1, 3);
-    fireEvent.select(allInputFields[1]);
+    allInputFields[2].setSelectionRange(1, 3);
+    fireEvent.select(allInputFields[2]);
     //inserts digit "5"
     await user.click(allKeypadKeys[5]);
 
     //assert
-    expect(allInputFields[1]).toHaveValue("154");
-    expect(allInputFields[1].selectionEnd).toBe(2);
-    expect(allInputFields[1]).toHaveFocus();
+    expect(allInputFields[2]).toHaveValue("154");
+    expect(allInputFields[2].selectionEnd).toBe(2);
+    expect(allInputFields[2]).toHaveFocus();
   });
 
   it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
@@ -82,7 +82,7 @@ describe("tests keypad interactions with input fields", () => {
     const user = userEvent.setup();
 
     //act
-    await user.click(allInputFields[0]);
+    await user.click(allInputFields[1]);
     await user.click(allTooltips[0]);
     // a 300 setTimeout that clears input ID on blur necessitates a timeout here
     setTimeout(() => {
@@ -91,7 +91,7 @@ describe("tests keypad interactions with input fields", () => {
 
       //assert
       // allInputFields[0] has a default value of 16
-      expect(allInputFields[0]).toHaveValue("16");
+      expect(allInputFields[1]).toHaveValue("16");
     }, 400);
   });
 
@@ -103,29 +103,29 @@ describe("tests keypad interactions with input fields", () => {
     const user = userEvent.setup();
 
     //act
-    await user.click(allInputFields[0]);
-    await user.click(allKeypadKeys[1]);
     await user.click(allInputFields[1]);
-    await user.click(allKeypadKeys[2]);
+    await user.click(allKeypadKeys[1]);
     await user.click(allInputFields[2]);
-    await user.click(allKeypadKeys[3]);
+    await user.click(allKeypadKeys[2]);
     await user.click(allInputFields[3]);
-    await user.click(allKeypadKeys[4]);
+    await user.click(allKeypadKeys[3]);
     await user.click(allInputFields[4]);
+    await user.click(allKeypadKeys[4]);
+    await user.click(allInputFields[5]);
     await user.click(allKeypadKeys[5]);
     //click keypad clear button
-    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[11]);
 
     //assert
     //that input field have correct values
-    expect(allInputFields[0]).toHaveValue("16");
-    expect(allInputFields[1]).toHaveValue("0");
+    expect(allInputFields[1]).toHaveValue("16");
     expect(allInputFields[2]).toHaveValue("0");
     expect(allInputFields[3]).toHaveValue("0");
     expect(allInputFields[4]).toHaveValue("0");
+    expect(allInputFields[5]).toHaveValue("0");
 
     //that focus is returned last input field
-    expect(allInputFields[4]).toHaveFocus();
+    expect(allInputFields[5]).toHaveFocus();
   });
 
   it("tests that keypad 'delete' 1) removes all selected digits when multiple selected 2) that the caret is correctly positioned at end, 4) focus is returned to last input", async () => {
@@ -146,7 +146,6 @@ describe("tests keypad interactions with input fields", () => {
     await user.click(allKeypadKeys[4]);
     //selects middle two digits from inputfield
     allInputFields[4].setSelectionRange(1, 3);
-    //fireEvent.select(allInputFields[4]);  !!!!!!!!
     //click delete
     await user.click(allKeypadKeys[10]);
 
@@ -174,7 +173,6 @@ describe("tests keypad interactions with input fields", () => {
     await user.click(allKeypadKeys[4]);
     //sets caret position
     allInputFields[4].setSelectionRange(2, 2);
-    //fireEvent.select(allInputFields[4]);  !!!!!!!!
     //click delete
     await user.click(allKeypadKeys[10]);
 
@@ -184,3 +182,16 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[4]).toHaveFocus();
   });
 });
+
+/* describe("tests ResultDisplay component", () => {
+  it("tests that the result displayed is correct when equals button is clicked", async () => {
+    //arrange
+    render(<App />);
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const allInputFields = screen.getAllByRole("textbox");
+    const user = userEvent.setup();
+
+    //act
+    //await user.click(allKeypadKeys[13]);
+  });
+}); */
