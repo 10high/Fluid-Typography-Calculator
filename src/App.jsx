@@ -3,6 +3,7 @@ import "./App.css";
 import Tooltip from "./components/Tooltip/Tooltip";
 import UnitInput from "./components/UnitInput/UnitInput";
 import KeypadButton from "./components/KeypadButton/KeypadButton";
+import ResultDisplay from "./components/ResultDisplay/ResultDisplay";
 
 const keypadButtons = [
   { value: "0", key: self.crypto.randomUUID() },
@@ -67,6 +68,7 @@ const unitInputItemWrapperKey = [
 const miscKeys = {
   clearButton: self.crypto.randomUUID(),
   deleteButton: self.crypto.randomUUID(),
+  performCalculationButton: self.crypto.randomUUID(),
 };
 
 function App() {
@@ -76,6 +78,11 @@ function App() {
 
   return (
     <div>
+      <ResultDisplay
+        inputFieldObjs={inputFieldObjs}
+        performCalculation={performCalculation}
+        setPerformCalculation={setPerformCalculation}
+      />
       <div className="unitInputContainer">
         {inputFieldObjs.map((item, index) => (
           <div
@@ -122,7 +129,7 @@ function App() {
         <KeypadButton
           buttonValue="="
           setInputFieldObjs={setInputFieldObjs}
-          key={miscKeys.clearButton}
+          key={miscKeys.performCalculationButton}
           inputWithFocusId={inputWithFocusId}
           setPerformCalculation={setPerformCalculation}
         />
