@@ -93,6 +93,7 @@ function App() {
               inputValue={item.inputValue}
               setInputFieldObjs={setInputFieldObjs}
               setInputWithFocusId={setInputWithFocusId}
+              setPerformCalculation={setPerformCalculation}
               fieldId={item.fieldId}
               key={item.fieldId}
             >

@@ -8,12 +8,14 @@ UnitInput.propTypes = {
   fieldId: PropTypes.string,
   setInputFieldObjs: PropTypes.func,
   setInputWithFocusId: PropTypes.func,
+  setPerformCalculation: PropTypes.func,
 };
 
 export default function UnitInput({
   fieldId,
   setInputFieldObjs,
   setInputWithFocusId,
+  setPerformCalculation,
   inputValue,
   children,
 }) {
@@ -33,6 +35,12 @@ export default function UnitInput({
   function handleOnBlur() {
     setInputWithFocusId(fieldId);
     setHasLostFocus(true);
+  }
+
+  function handleOnKeyDown(event) {
+    if (event.key === "Enter") {
+      setPerformCalculation(true);
+    }
   }
 
   useEffect(() => {
@@ -58,6 +66,7 @@ export default function UnitInput({
           handleInputFieldOnChange(fieldId, event.target.value)
         }
         onBlur={handleOnBlur}
+        onKeyDown={(event) => handleOnKeyDown(event)}
       />
       <abbr className={Styles.calculator__measureUnit} title="pixels">
         px
