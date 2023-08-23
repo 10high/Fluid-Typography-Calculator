@@ -7,12 +7,14 @@ KeypadButton.propTypes = {
   inputFieldObjs: PropTypes.array,
   setInputFieldObjs: PropTypes.func,
   inputWithFocusId: PropTypes.string,
+  setPerformCalculation: PropTypes.func,
 };
 
 export default function KeypadButton({
   buttonValue,
   setInputFieldObjs,
   inputWithFocusId,
+  setPerformCalculation,
 }) {
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
@@ -106,6 +108,10 @@ export default function KeypadButton({
     }
     if (target.value === "←") {
       handleDeleteButton();
+      return;
+    }
+    if (target.value === "=") {
+      setPerformCalculation(true);
       return;
     }
     handleDigitButton(target.value);

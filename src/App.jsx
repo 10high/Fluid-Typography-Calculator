@@ -72,6 +72,7 @@ const miscKeys = {
 function App() {
   const [inputFieldObjs, setInputFieldObjs] = useState(inputFields);
   const [inputWithFocusId, setInputWithFocusId] = useState("");
+  const [performCalculation, setPerformCalculation] = useState(false);
 
   return (
     <div>
@@ -117,6 +118,13 @@ function App() {
           setInputFieldObjs={setInputFieldObjs}
           key={miscKeys.clearButton}
           inputWithFocusId={inputWithFocusId}
+        />
+        <KeypadButton
+          buttonValue="="
+          setInputFieldObjs={setInputFieldObjs}
+          key={miscKeys.clearButton}
+          inputWithFocusId={inputWithFocusId}
+          setPerformCalculation={setPerformCalculation}
         />
       </div>
     </div>
