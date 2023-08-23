@@ -183,7 +183,7 @@ describe("tests keypad interactions with input fields", () => {
   });
 });
 
-/* describe("tests ResultDisplay component", () => {
+describe("tests ResultDisplay component", () => {
   it("tests that the result displayed is correct when equals button is clicked", async () => {
     //arrange
     render(<App />);
@@ -192,6 +192,15 @@ describe("tests keypad interactions with input fields", () => {
     const user = userEvent.setup();
 
     //act
-    //await user.click(allKeypadKeys[13]);
+    await user.type(allInputFields[2], "375");
+    await user.type(allInputFields[3], "1440");
+    await user.type(allInputFields[4], "16");
+    await user.type(allInputFields[5], "24");
+    await user.click(allKeypadKeys[12]);
+
+    //assert
+    expect(allInputFields[0]).toHaveValue(
+      "clamp(1rem, 0.751vw + 0.824rem, 1.5rem)"
+    );
   });
-}); */
+});
