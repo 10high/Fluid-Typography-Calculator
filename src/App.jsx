@@ -8,16 +8,16 @@ import CopyToClipbpard from "./components/CopyToClipboard/CopyToClipboard";
 import AnnotateResult from "./components/AnnotateResult/AnnotateResult";
 
 const keypadButtons = [
-  { value: "0", key: self.crypto.randomUUID() },
-  { value: "1", key: self.crypto.randomUUID() },
-  { value: "2", key: self.crypto.randomUUID() },
-  { value: "3", key: self.crypto.randomUUID() },
-  { value: "4", key: self.crypto.randomUUID() },
-  { value: "5", key: self.crypto.randomUUID() },
-  { value: "6", key: self.crypto.randomUUID() },
   { value: "7", key: self.crypto.randomUUID() },
   { value: "8", key: self.crypto.randomUUID() },
   { value: "9", key: self.crypto.randomUUID() },
+  { value: "4", key: self.crypto.randomUUID() },
+  { value: "5", key: self.crypto.randomUUID() },
+  { value: "6", key: self.crypto.randomUUID() },
+  { value: "1", key: self.crypto.randomUUID() },
+  { value: "2", key: self.crypto.randomUUID() },
+  { value: "3", key: self.crypto.randomUUID() },
+  { value: "0", key: self.crypto.randomUUID() },
 ];
 
 const inputFields = [
@@ -121,34 +121,36 @@ function App() {
         ))}
       </div>
 
-      <div className="keypadButtonsContainer">
-        {keypadButtons.map((item) => (
+      <div className={Styles.keypad}>
+        <div className={Styles.keypadContainer}>
           <KeypadButton
-            buttonValue={item.value}
+            buttonValue="←"
             setInputFieldObjs={setInputFieldObjs}
-            key={item.key}
+            key={miscKeys.deleteButton}
             inputWithFocusId={inputWithFocusId}
           />
-        ))}
-        <KeypadButton
-          buttonValue="←"
-          setInputFieldObjs={setInputFieldObjs}
-          key={miscKeys.deleteButton}
-          inputWithFocusId={inputWithFocusId}
-        />
-        <KeypadButton
-          buttonValue="C"
-          setInputFieldObjs={setInputFieldObjs}
-          key={miscKeys.clearButton}
-          inputWithFocusId={inputWithFocusId}
-        />
-        <KeypadButton
-          buttonValue="="
-          setInputFieldObjs={setInputFieldObjs}
-          key={miscKeys.performCalculationButton}
-          inputWithFocusId={inputWithFocusId}
-          setPerformCalculation={setPerformCalculation}
-        />
+          <KeypadButton
+            buttonValue="C"
+            setInputFieldObjs={setInputFieldObjs}
+            key={miscKeys.clearButton}
+            inputWithFocusId={inputWithFocusId}
+          />
+          <KeypadButton
+            buttonValue="="
+            setInputFieldObjs={setInputFieldObjs}
+            key={miscKeys.performCalculationButton}
+            inputWithFocusId={inputWithFocusId}
+            setPerformCalculation={setPerformCalculation}
+          />
+          {keypadButtons.map((item) => (
+            <KeypadButton
+              buttonValue={item.value}
+              setInputFieldObjs={setInputFieldObjs}
+              key={item.key}
+              inputWithFocusId={inputWithFocusId}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

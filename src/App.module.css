@@ -26,3 +26,22 @@
   border-width: 1.5px;
   border-radius: 7px;
 }
+
+.keypad {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+  width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
+  height: clamp(11.5rem, 3.333333333vw + 10.75rem, 13.75rem);
+  border-style: solid;
+  border-width: 1.5px;
+  border-radius: 7px;
+}
+
+.keypadContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
