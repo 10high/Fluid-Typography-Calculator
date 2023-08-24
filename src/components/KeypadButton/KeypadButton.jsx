@@ -101,17 +101,18 @@ export default function KeypadButton({
   }
 
   function handleOnClick({ target }) {
-    if (inputWithFocusId === "") return;
     if (target.value === "C") {
       handleCButton();
       return;
     }
-    if (target.value === "←") {
-      handleDeleteButton();
-      return;
-    }
     if (target.value === "=") {
       setPerformCalculation(true);
+      return;
+    }
+    if (inputWithFocusId === "") return;
+
+    if (target.value === "←") {
+      handleDeleteButton();
       return;
     }
     handleDigitButton(target.value);
