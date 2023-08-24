@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
@@ -6,17 +6,17 @@ ResultDisplay.propTypes = {
   inputFieldObjs: PropTypes.array,
   performCalculation: PropTypes.bool,
   setPerformCalculation: PropTypes.func,
+  setResultValue: PropTypes.func,
+  resultValue: PropTypes.string,
 };
 
 export default function ResultDisplay({
   inputFieldObjs,
   performCalculation,
   setPerformCalculation,
+  setResultValue,
+  resultValue,
 }) {
-  const [resultValue, setResultValue] = useState(
-    `clamp(2.625rem, 1.019vw + 2.396rem, 3.313rem)`
-  );
-
   useEffect(
     function () {
       if (performCalculation) {
@@ -46,7 +46,7 @@ export default function ResultDisplay({
         setPerformCalculation(false);
       }
     },
-    [performCalculation, inputFieldObjs, setPerformCalculation]
+    [performCalculation, inputFieldObjs, setPerformCalculation, setResultValue]
   );
 
   return (

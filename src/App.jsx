@@ -4,6 +4,7 @@ import Tooltip from "./components/Tooltip/Tooltip";
 import UnitInput from "./components/UnitInput/UnitInput";
 import KeypadButton from "./components/KeypadButton/KeypadButton";
 import ResultDisplay from "./components/ResultDisplay/ResultDisplay";
+import CopyToClipbpard from "./components/CopyToClipboard/CopyToClipboard";
 
 const keypadButtons = [
   { value: "0", key: self.crypto.randomUUID() },
@@ -75,6 +76,9 @@ function App() {
   const [inputFieldObjs, setInputFieldObjs] = useState(inputFields);
   const [inputWithFocusId, setInputWithFocusId] = useState("");
   const [performCalculation, setPerformCalculation] = useState(false);
+  const [resultValue, setResultValue] = useState(
+    `clamp(2.625rem, 1.019vw + 2.396rem, 3.313rem)`
+  );
 
   return (
     <div>
@@ -82,7 +86,10 @@ function App() {
         inputFieldObjs={inputFieldObjs}
         performCalculation={performCalculation}
         setPerformCalculation={setPerformCalculation}
+        setResultValue={setResultValue}
+        resultValue={resultValue}
       />
+      <CopyToClipbpard resultValue={resultValue} />
       <div className="unitInputContainer">
         {inputFieldObjs.map((item, index) => (
           <div
