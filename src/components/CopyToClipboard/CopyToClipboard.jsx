@@ -43,7 +43,10 @@ export default function CopyToClipbpard({ resultValue }) {
         </svg>
       </button>
       {copiedToClipboard && (
-        <span className={Styles.calculator__clipboardNotification}>
+        <span
+          data-testid="clipboardNotification"
+          className={Styles.calculator__clipboardNotification}
+        >
           Copied!
         </span>
       )}
