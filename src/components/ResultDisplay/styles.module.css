@@ -1,8 +1,4 @@
 .calculator__output {
-  align-self: center;
-  flex-basis: auto;
-  flex-grow: 2;
-  padding-left: 4px;
   border-style: none;
   background-color: hsl(0, 0%, 100%, 0);
   font-weight: 700;

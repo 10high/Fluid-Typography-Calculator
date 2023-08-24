@@ -3,6 +3,11 @@
   width: 24px;
 }
 
+.calculator__clipboardButton {
+  background-color: transparent;
+  border: none;
+}
+
 .calculator__clipboard {
   flex-basis: auto;
   flex-shrink: 0;

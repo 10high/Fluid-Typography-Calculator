@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import Styles from "./App.module.css";
 import Tooltip from "./components/Tooltip/Tooltip";
 import UnitInput from "./components/UnitInput/UnitInput";
 import KeypadButton from "./components/KeypadButton/KeypadButton";
@@ -83,17 +83,21 @@ function App() {
   const [annotate, setAnnotate] = useState(false);
 
   return (
-    <div>
-      <ResultDisplay
-        inputFieldObjs={inputFieldObjs}
-        performCalculation={performCalculation}
-        setPerformCalculation={setPerformCalculation}
-        setResultValue={setResultValue}
-        resultValue={resultValue}
-        annotate={annotate}
-      />
-      <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
-      <CopyToClipbpard resultValue={resultValue} />
+    <div className={Styles.calculator}>
+      <div className={Styles.result__border}>
+        <div className={Styles.result}>
+          <ResultDisplay
+            inputFieldObjs={inputFieldObjs}
+            performCalculation={performCalculation}
+            setPerformCalculation={setPerformCalculation}
+            setResultValue={setResultValue}
+            resultValue={resultValue}
+            annotate={annotate}
+          />
+          <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
+          <CopyToClipbpard resultValue={resultValue} />
+        </div>
+      </div>
       <div className="unitInputContainer">
         {inputFieldObjs.map((item, index) => (
           <div

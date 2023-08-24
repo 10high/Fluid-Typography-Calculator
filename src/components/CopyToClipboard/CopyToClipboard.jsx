@@ -25,6 +25,7 @@ export default function CopyToClipbpard({ resultValue }) {
   return (
     <div className={Styles.calculator__clipboardWrapper}>
       <button
+        className={Styles.calculator__clipboardButton}
         role="button"
         title="Copy result to clipboard"
         onClick={handleOnClick}
