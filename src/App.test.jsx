@@ -207,7 +207,6 @@ describe("tests ResultDisplay component", () => {
   it("tests that the result displayed is correct when Enter button is used", async () => {
     //arrange
     render(<App />);
-    //const allKeypadKeys = screen.getAllByTestId("keypadButton");
     const allInputFields = screen.getAllByRole("textbox");
     const user = userEvent.setup();
 
@@ -221,6 +220,27 @@ describe("tests ResultDisplay component", () => {
     //assert
     expect(allInputFields[0]).toHaveValue(
       "clamp(1rem, 0.751vw + 0.824rem, 1.5rem)"
+    );
+  });
+
+  it("tests that AnnotateResult component annotates result with input pixel values", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const annotateCheckBox = screen.getByRole("checkbox");
+    const user = userEvent.setup();
+
+    //act
+    await user.type(allInputFields[2], "375");
+    await user.type(allInputFields[3], "1440");
+    await user.type(allInputFields[4], "16");
+    await user.type(allInputFields[5], "24");
+    await user.click(annotateCheckBox);
+    await user.type(allInputFields[5], "{Enter}");
+
+    //assert
+    expect(allInputFields[0]).toHaveValue(
+      "clamp(1rem, 0.751vw + 0.824rem, 1.5rem) //rem: 16px, min screen width: 375px, max screen width: 1440px, clamp min: 16px, clamp max: 24px"
     );
   });
 
