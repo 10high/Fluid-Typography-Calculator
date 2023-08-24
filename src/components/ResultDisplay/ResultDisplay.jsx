@@ -8,6 +8,7 @@ ResultDisplay.propTypes = {
   setPerformCalculation: PropTypes.func,
   setResultValue: PropTypes.func,
   resultValue: PropTypes.string,
+  annotate: PropTypes.bool,
 };
 
 export default function ResultDisplay({
@@ -16,6 +17,7 @@ export default function ResultDisplay({
   setPerformCalculation,
   setResultValue,
   resultValue,
+  annotate,
 }) {
   useEffect(
     function () {
@@ -36,17 +38,27 @@ export default function ResultDisplay({
           remInput
         ).toFixed(3);
 
-        const result = `clamp(${parseFloat(
+        let result = `clamp(${parseFloat(
           (minClamp / remInput).toFixed(3)
         )}rem, ${parseFloat(vw)}vw + ${parseFloat(rem)}rem, ${parseFloat(
           (maxClamp / remInput).toFixed(3)
         )}rem)`;
 
+        if (annotate) {
+          result = `${result} //rem: ${remInput}px, min screen width: ${minScreen}px, max screen width: ${maxScreen}px, clamp min: ${minClamp}px, clamp max: ${maxClamp}px`;
+        }
+
         setResultValue(result);
         setPerformCalculation(false);
       }
     },
-    [performCalculation, inputFieldObjs, setPerformCalculation, setResultValue]
+    [
+      performCalculation,
+      inputFieldObjs,
+      setPerformCalculation,
+      setResultValue,
+      annotate,
+    ]
   );
 
   return (
