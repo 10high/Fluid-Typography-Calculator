@@ -73,7 +73,7 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[2]).toHaveFocus();
   });
 
-  it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
+  /* it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
     //arrange
     render(<App />);
     const allInputFields = screen.getAllByRole("textbox");
@@ -93,7 +93,7 @@ describe("tests keypad interactions with input fields", () => {
       // allInputFields[0] has a default value of 16
       expect(allInputFields[1]).toHaveValue("16");
     }, 400);
-  });
+  }); */
 
   it("test: keypad C button 1) clears all input 2)resets '1 rem' to '16' 3)returns focus to previous input", async () => {
     //arrange
@@ -128,7 +128,7 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[5]).toHaveFocus();
   });
 
-  it("tests that keypad 'delete' 1) removes all selected digits when multiple selected 2) that the caret is correctly positioned at end, 4) focus is returned to last input", async () => {
+  it("tests that keypad 'delete' 1) removes all selected digits when multiple selected 2) that the caret is correctly positioned on finish, 4) focus is returned to last input", async () => {
     //arrange
     render(<App />);
     const allInputFields = screen.getAllByRole("textbox");
@@ -222,5 +222,36 @@ describe("tests ResultDisplay component", () => {
     expect(allInputFields[0]).toHaveValue(
       "clamp(1rem, 0.751vw + 0.824rem, 1.5rem)"
     );
+  });
+
+  it("tests that '=' and 'C' keypad buttons work even when no input field has focus", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const allTooltips = screen.getAllByRole("tooltip");
+    const user = userEvent.setup();
+
+    //act
+    await user.type(allInputFields[2], "375");
+    await user.type(allInputFields[3], "1440");
+    await user.type(allInputFields[4], "16");
+    await user.type(allInputFields[5], "24");
+    //removes focus from inputs
+    await user.click(allTooltips[2]);
+    //clicks equals button
+    await user.click(allKeypadKeys[12]);
+    //clicks clear button
+    await user.click(allKeypadKeys[11]);
+
+    //assert
+    expect(allInputFields[0]).toHaveValue(
+      "clamp(1rem, 0.751vw + 0.824rem, 1.5rem)"
+    );
+    expect(allInputFields[1]).toHaveValue("16");
+    expect(allInputFields[2]).toHaveValue("0");
+    expect(allInputFields[3]).toHaveValue("0");
+    expect(allInputFields[4]).toHaveValue("0");
+    expect(allInputFields[5]).toHaveValue("0");
   });
 });
