@@ -63,7 +63,7 @@ export default function ResultDisplay({
 
   return (
     <input
-      className={Styles.calculator__output}
+      className={Styles.resultDisplay}
       type="text"
       readOnly={true}
       inputMode="none"

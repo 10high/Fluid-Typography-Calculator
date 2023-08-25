@@ -1,21 +1,15 @@
 .calculator {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   width: clamp(15.75rem, 4.074074074vw + 14.83333333rem, 18.5rem);
-  height: clamp(28.1875rem, 8.981481481vw + 26.16666667rem, 34.25rem);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   border-style: solid;
   border-color: black;
   border-width: 1.5px;
   border-radius: 23px;
+  padding: 16px 0;
 }
 
-.result {
-  display: flex;
-  /* margin-top: clamp(1rem, 0.7407407407vw + 0.8333333333rem, 24px); */
-}
-
-.result__border {
+.resultDisplay__border {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,17 +21,42 @@
   border-radius: 7px;
 }
 
-.keypad {
-  display: flex;
+.resultDisplay__rightLine {
+  border-bottom: solid 1.5px black;
+  height: 50%;
+}
 
-  justify-content: center;
+.unitInput__wrapper {
+  display: flex;
+  flex-wrap: nowrap;
 
   align-items: center;
   width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
-  height: clamp(11.5rem, 3.333333333vw + 10.75rem, 13.75rem);
+  height: clamp(1.5rem, 0.3703703704vw + 1.416666667rem, 1.75rem);
+}
+
+.unitInput__border {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 1.5px;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.keypad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
   border-style: solid;
   border-width: 1.5px;
   border-radius: 7px;
+  padding: 16px 0;
 }
 
 .keypadContainer {

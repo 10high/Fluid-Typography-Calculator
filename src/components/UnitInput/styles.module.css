@@ -1,26 +1,3 @@
-.calculator__inputWrapper {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: nowrap;
-  -webkit-box-align: center;
-  align-items: center;
-  width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
-  height: clamp(1.5rem, 0.3703703704vw + 1.416666667rem, 1.75rem);
-}
-
-.calculator__inputBorder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-style: solid;
-  border-color: black;
-  border-width: 1.5px;
-  border-radius: 4px;
-  padding: 0 4px;
-}
-
 .calculator__inputField {
   width: 50px;
   text-align: right;

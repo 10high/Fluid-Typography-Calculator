@@ -6,6 +6,7 @@ import KeypadButton from "./components/KeypadButton/KeypadButton";
 import ResultDisplay from "./components/ResultDisplay/ResultDisplay";
 import CopyToClipbpard from "./components/CopyToClipboard/CopyToClipboard";
 import AnnotateResult from "./components/AnnotateResult/AnnotateResult";
+import VerticalConnectingLine from "./layout/VerticalConnectingLine/VerticalConnectingLine";
 
 const keypadButtons = [
   { value: "7", key: self.crypto.randomUUID() },
@@ -73,6 +74,19 @@ const miscKeys = {
   performCalculationButton: self.crypto.randomUUID(),
 };
 
+const unitInputDivSpacerKeys = [
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+  self.crypto.randomUUID(),
+];
+
 function App() {
   const [inputFieldObjs, setInputFieldObjs] = useState(inputFields);
   const [inputWithFocusId, setInputWithFocusId] = useState("");
@@ -84,43 +98,52 @@ function App() {
 
   return (
     <div className={Styles.calculator}>
-      <div className={Styles.result__border}>
-        <div className={Styles.result}>
-          <ResultDisplay
-            inputFieldObjs={inputFieldObjs}
-            performCalculation={performCalculation}
-            setPerformCalculation={setPerformCalculation}
-            setResultValue={setResultValue}
-            resultValue={resultValue}
-            annotate={annotate}
-          />
-          <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
-          <CopyToClipbpard resultValue={resultValue} />
-        </div>
+      <div></div>
+
+      <div className={Styles.resultDisplay__border}>
+        <ResultDisplay
+          inputFieldObjs={inputFieldObjs}
+          performCalculation={performCalculation}
+          setPerformCalculation={setPerformCalculation}
+          setResultValue={setResultValue}
+          resultValue={resultValue}
+          annotate={annotate}
+        />
+        <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
+        <CopyToClipbpard resultValue={resultValue} />
       </div>
-      <div className="unitInputContainer">
-        {inputFieldObjs.map((item, index) => (
+
+      <div className={Styles.resultDisplay__rightLine}></div>
+      <VerticalConnectingLine height={16} />
+      {inputFieldObjs.map((item, index) => (
+        <>
+          <div key={unitInputDivSpacerKeys[index]}></div>
           <div
-            className="unitInputItemWrapper"
+            className={Styles.unitInput__wrapper}
             key={unitInputItemWrapperKey[index]}
           >
-            <UnitInput
-              inputValue={item.inputValue}
-              setInputFieldObjs={setInputFieldObjs}
-              setInputWithFocusId={setInputWithFocusId}
-              setPerformCalculation={setPerformCalculation}
-              fieldId={item.fieldId}
-              key={item.fieldId}
-            >
-              {item.text}
-            </UnitInput>
+            <div className={Styles.unitInput__border}>
+              <UnitInput
+                inputValue={item.inputValue}
+                setInputFieldObjs={setInputFieldObjs}
+                setInputWithFocusId={setInputWithFocusId}
+                setPerformCalculation={setPerformCalculation}
+                fieldId={item.fieldId}
+                key={item.fieldId}
+              >
+                {item.text}
+              </UnitInput>
+            </div>
             <Tooltip key={tooltips[item.fieldId].key}>
               {tooltips[item.fieldId].text}
             </Tooltip>
           </div>
-        ))}
-      </div>
-
+          <div key={unitInputDivSpacerKeys[++index]}></div>
+          <VerticalConnectingLine height={12} />
+        </>
+      ))}
+      <VerticalConnectingLine height={4} />
+      <div></div>
       <div className={Styles.keypad}>
         <div className={Styles.keypadContainer}>
           <KeypadButton
@@ -152,6 +175,7 @@ function App() {
           ))}
         </div>
       </div>
+      <div></div>
     </div>
   );
 }

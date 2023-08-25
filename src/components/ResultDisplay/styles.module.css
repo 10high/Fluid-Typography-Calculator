@@ -1,4 +1,4 @@
-.calculator__output {
+.resultDisplay {
   border-style: none;
   background-color: hsl(0, 0%, 100%, 0);
   font-weight: 700;
@@ -6,12 +6,12 @@
 }
 
 .calculator__output--highlighted,
-.calculator__output:focus {
+.resultDisplay:focus {
   background-color: rgb(0, 0, 238);
   color: white;
 }
 
-.calculator__output--copied {
+.resultDisplay--copied {
   background-color: black;
   color: white;
 }

@@ -3,19 +3,3 @@
 html {
   font-family: "Roboto", sans-serif;
 }
-
-.unitInputContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.unitInputItemWrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-.keypadButtonsContainer {
-  display: flex;
-  flex-wrap: wrap-reverse;
-}
