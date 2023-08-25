@@ -24,12 +24,12 @@ const keypadButtons = [
 const inputFields = [
   { text: "1 rem:", fieldId: self.crypto.randomUUID(), inputValue: "16" },
   {
-    text: "min screen width:",
+    text: "min viewport:",
     fieldId: self.crypto.randomUUID(),
     inputValue: "0",
   },
   {
-    text: "max screen width:",
+    text: "max viewport:",
     fieldId: self.crypto.randomUUID(),
     inputValue: "0",
   },

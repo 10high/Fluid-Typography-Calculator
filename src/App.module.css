@@ -29,7 +29,6 @@
 .unitInput__wrapper {
   display: flex;
   flex-wrap: nowrap;
-
   align-items: center;
   width: clamp(13.75rem, 3.333333333vw + 13rem, 16rem);
   height: clamp(1.5rem, 0.3703703704vw + 1.416666667rem, 1.75rem);
