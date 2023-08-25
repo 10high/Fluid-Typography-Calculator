@@ -8,6 +8,7 @@ import CopyToClipbpard from "./components/CopyToClipboard/CopyToClipboard";
 import AnnotateResult from "./components/AnnotateResult/AnnotateResult";
 import VerticalConnectingLine from "./layout/VerticalConnectingLine/VerticalConnectingLine";
 import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
 
 const keypadButtons = [
   { value: "7", key: self.crypto.randomUUID() },
@@ -100,6 +101,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Header />
       <div className={Styles.calculator}>
         <div></div>
 
