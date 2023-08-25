@@ -56,21 +56,26 @@ export default function UnitInput({
   }, [hasLostFocus, setInputWithFocusId, setHasLostFocus]);
 
   return (
-    <div className={Styles.calculator__inputBorder}>
-      <label htmlFor={fieldId}>{children}</label>
-      <input
-        id={fieldId}
-        type="text"
-        value={inputValue}
-        onChange={(event) =>
-          handleInputFieldOnChange(fieldId, event.target.value)
-        }
-        onBlur={handleOnBlur}
-        onKeyDown={(event) => handleOnKeyDown(event)}
-      />
-      <abbr className={Styles.calculator__measureUnit} title="pixels">
-        px
-      </abbr>
+    <div className={Styles.calculator__inputWrapper}>
+      <div className={Styles.calculator__inputBorder}>
+        <label htmlFor={fieldId}>{children}</label>
+        <span>
+          <input
+            className={Styles.calculator__inputField}
+            id={fieldId}
+            type="text"
+            value={inputValue}
+            onChange={(event) =>
+              handleInputFieldOnChange(fieldId, event.target.value)
+            }
+            onBlur={handleOnBlur}
+            onKeyDown={(event) => handleOnKeyDown(event)}
+          />
+          <abbr className={Styles.calculator__measureUnit} title="pixels">
+            px
+          </abbr>
+        </span>
+      </div>
     </div>
   );
 }

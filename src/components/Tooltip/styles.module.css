@@ -5,6 +5,7 @@
 
 .calculator__infoCircle {
   border-radius: 50%;
+  margin-left: 4px;
 }
 
 .calculator__infoCircle:hover {
