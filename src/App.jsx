@@ -101,87 +101,89 @@ function App() {
   return (
     <>
       <NavBar />
-      <Header />
-      <div className={Styles.calculator}>
-        <div></div>
-
-        <div className={Styles.resultDisplay__border}>
-          <ResultDisplay
-            inputFieldObjs={inputFieldObjs}
-            performCalculation={performCalculation}
-            setPerformCalculation={setPerformCalculation}
-            setResultValue={setResultValue}
-            resultValue={resultValue}
-            annotate={annotate}
-          />
-          <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
-          <CopyToClipbpard resultValue={resultValue} />
-        </div>
-
-        <div className={Styles.resultDisplay__rightLine}></div>
-        <VerticalConnectingLine height={16} />
-        {inputFieldObjs.map((item, index) => (
-          <>
-            <div key={unitInputDivSpacerKeys[index]}></div>
-            <div
-              className={Styles.unitInput__wrapper}
-              key={unitInputItemWrapperKey[index]}
-            >
-              <div className={Styles.unitInput__border}>
-                <UnitInput
-                  inputValue={item.inputValue}
-                  setInputFieldObjs={setInputFieldObjs}
-                  setInputWithFocusId={setInputWithFocusId}
-                  setPerformCalculation={setPerformCalculation}
-                  fieldId={item.fieldId}
-                  key={item.fieldId}
-                >
-                  {item.text}
-                </UnitInput>
-              </div>
-              <Tooltip key={tooltips[item.fieldId].key}>
-                {tooltips[item.fieldId].text}
-              </Tooltip>
-            </div>
-            <div key={unitInputDivSpacerKeys[++index]}></div>
-            <VerticalConnectingLine height={12} />
-          </>
-        ))}
-        <VerticalConnectingLine height={4} />
-        <div></div>
-        <div className={Styles.keypad}>
-          <div className={Styles.keypadContainer}>
-            <KeypadButton
-              buttonValue="←"
-              setInputFieldObjs={setInputFieldObjs}
-              key={miscKeys.deleteButton}
-              inputWithFocusId={inputWithFocusId}
-            />
-            <KeypadButton
-              buttonValue="C"
-              setInputFieldObjs={setInputFieldObjs}
-              key={miscKeys.clearButton}
-              inputWithFocusId={inputWithFocusId}
-            />
-            <KeypadButton
-              buttonValue="="
-              setInputFieldObjs={setInputFieldObjs}
-              key={miscKeys.performCalculationButton}
-              inputWithFocusId={inputWithFocusId}
-              setPerformCalculation={setPerformCalculation}
-            />
-            {keypadButtons.map((item) => (
-              <KeypadButton
-                buttonValue={item.value}
-                setInputFieldObjs={setInputFieldObjs}
-                key={item.key}
-                inputWithFocusId={inputWithFocusId}
+      <main>
+        <div className={Styles.main__Container}>
+          <Header />
+          <div className={Styles.calculator}>
+            <div></div>
+            <div className={Styles.resultDisplay__border}>
+              <ResultDisplay
+                inputFieldObjs={inputFieldObjs}
+                performCalculation={performCalculation}
+                setPerformCalculation={setPerformCalculation}
+                setResultValue={setResultValue}
+                resultValue={resultValue}
+                annotate={annotate}
               />
+              <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
+              <CopyToClipbpard resultValue={resultValue} />
+            </div>
+            <div className={Styles.resultDisplay__rightLine}></div>
+            <VerticalConnectingLine height={16} />
+            {inputFieldObjs.map((item, index) => (
+              <>
+                <div key={unitInputDivSpacerKeys[index]}></div>
+                <div
+                  className={Styles.unitInput__wrapper}
+                  key={unitInputItemWrapperKey[index]}
+                >
+                  <div className={Styles.unitInput__border}>
+                    <UnitInput
+                      inputValue={item.inputValue}
+                      setInputFieldObjs={setInputFieldObjs}
+                      setInputWithFocusId={setInputWithFocusId}
+                      setPerformCalculation={setPerformCalculation}
+                      fieldId={item.fieldId}
+                      key={item.fieldId}
+                    >
+                      {item.text}
+                    </UnitInput>
+                  </div>
+                  <Tooltip key={tooltips[item.fieldId].key}>
+                    {tooltips[item.fieldId].text}
+                  </Tooltip>
+                </div>
+                <div key={unitInputDivSpacerKeys[++index]}></div>
+                <VerticalConnectingLine height={12} />
+              </>
             ))}
+            <VerticalConnectingLine height={4} />
+            <div></div>
+            <div className={Styles.keypad}>
+              <div className={Styles.keypadContainer}>
+                <KeypadButton
+                  buttonValue="←"
+                  setInputFieldObjs={setInputFieldObjs}
+                  key={miscKeys.deleteButton}
+                  inputWithFocusId={inputWithFocusId}
+                />
+                <KeypadButton
+                  buttonValue="C"
+                  setInputFieldObjs={setInputFieldObjs}
+                  key={miscKeys.clearButton}
+                  inputWithFocusId={inputWithFocusId}
+                />
+                <KeypadButton
+                  buttonValue="="
+                  setInputFieldObjs={setInputFieldObjs}
+                  key={miscKeys.performCalculationButton}
+                  inputWithFocusId={inputWithFocusId}
+                  setPerformCalculation={setPerformCalculation}
+                />
+                {keypadButtons.map((item) => (
+                  <KeypadButton
+                    buttonValue={item.value}
+                    setInputFieldObjs={setInputFieldObjs}
+                    key={item.key}
+                    inputWithFocusId={inputWithFocusId}
+                  />
+                ))}
+              </div>
+            </div>
+            <div></div>
           </div>
         </div>
-        <div></div>
-      </div>
+      </main>
     </>
   );
 }

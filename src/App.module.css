@@ -1,4 +1,16 @@
+main {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main__Container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .calculator {
+  position: relative;
+  right: 25px;
   width: clamp(15.75rem, 4.074074074vw + 14.83333333rem, 18.5rem);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
