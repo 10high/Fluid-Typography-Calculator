@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Styles from "./App.module.css";
 import Tooltip from "./components/Tooltip/Tooltip";
 import UnitInput from "./components/UnitInput/UnitInput";
@@ -9,6 +9,7 @@ import AnnotateResult from "./components/AnnotateResult/AnnotateResult";
 import VerticalConnectingLine from "./layout/VerticalConnectingLine/VerticalConnectingLine";
 import NavBar from "./components/NavBar/NavBar";
 import Header from "./components/Header/Header";
+import Description from "./components/Description/Description";
 
 const keypadButtons = [
   { value: "7", key: self.crypto.randomUUID() },
@@ -97,13 +98,38 @@ function App() {
     `clamp(2.625rem, 1.019vw + 2.396rem, 3.313rem)`
   );
   const [annotate, setAnnotate] = useState(false);
+  const [screenIsSmall, setScreenIsSmall] = useState(false);
+
+  useEffect(function handleWindowResize() {
+    if (window.innerWidth < 1001) {
+      setScreenIsSmall(true);
+    } else {
+      setScreenIsSmall(false);
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return function () {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   return (
     <>
       <NavBar />
+
       <main>
         <div className={Styles.main__Container}>
-          <Header />
+          {!screenIsSmall && (
+            <>
+              <div></div>
+              <div className={Styles.description__leftContainer}>
+                <Description />
+                <div className={Styles.description__leftConnectingLine}></div>
+              </div>
+            </>
+          )}
+          <div className={Styles.header}>
+            <Header />
+          </div>
           <div className={Styles.calculator}>
             <div></div>
             <div className={Styles.resultDisplay__border}>
@@ -119,7 +145,7 @@ function App() {
               <CopyToClipbpard resultValue={resultValue} />
             </div>
             <div className={Styles.resultDisplay__rightLine}></div>
-            <VerticalConnectingLine height={16} />
+            <VerticalConnectingLine height={16} width={"50%"} />
             {inputFieldObjs.map((item, index) => (
               <>
                 <div key={unitInputDivSpacerKeys[index]}></div>
@@ -144,10 +170,10 @@ function App() {
                   </Tooltip>
                 </div>
                 <div key={unitInputDivSpacerKeys[++index]}></div>
-                <VerticalConnectingLine height={12} />
+                <VerticalConnectingLine height={12} width={"50%"} />
               </>
             ))}
-            <VerticalConnectingLine height={4} />
+            <VerticalConnectingLine height={4} width={"50%"} />
             <div></div>
             <div className={Styles.keypad}>
               <div className={Styles.keypadContainer}>
@@ -182,6 +208,12 @@ function App() {
             </div>
             <div></div>
           </div>
+          {screenIsSmall && (
+            <>
+              <VerticalConnectingLine height={64} width={"0%"} />
+              <Description />
+            </>
+          )}
         </div>
       </main>
     </>

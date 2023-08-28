@@ -1,7 +1,6 @@
 .description {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
+  width: 300px;
+  height: min-content;
   border-style: solid;
   border-color: black;
   border-width: 1.5px;

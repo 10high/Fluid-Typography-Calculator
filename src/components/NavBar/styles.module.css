@@ -1,15 +1,26 @@
 .navbar {
-  min-width: 360px;
+  position: relative;
+  min-width: 350px;
+  max-width: 1200px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.navbar::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  content: "";
   border-bottom-style: solid;
   border-bottom-color: black;
-  border-bottom-width: 1.5px;
+  border-bottom-width: 2.5px;
+  width: 100vw;
 }
 
 ul {
   list-style-type: none;
+  margin: 0 8px 0 0;
 }
 
 .navbar__list {
@@ -18,7 +29,6 @@ ul {
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
-  margin-right: clamp(1.5rem, 21.38888888888889vw + -3.3125rem, 15.9375rem);
   padding-top: 0.5rem;
 }
 
