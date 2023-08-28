@@ -1,0 +1,25 @@
+.description {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  border-width: 1.5px;
+  border-radius: 23px;
+  padding: 16px;
+}
+
+.description__paragraph {
+  font-size: 1rem;
+  line-height: 1.171875;
+  margin: 0;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+.description__link {
+  color: rgb(0, 0, 238);
+  font-style: italic;
+}
