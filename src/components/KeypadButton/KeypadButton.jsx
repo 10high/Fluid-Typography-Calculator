@@ -49,8 +49,6 @@ export default function KeypadButton({
       setInputCaretPosition(selectionEnd - (selectionEnd - selectionStart) + 1);
       setKeypadButtonClicked(true);
     }
-
-    elementWithFocus.focus();
   }
 
   function handleCButton() {
@@ -125,6 +123,12 @@ export default function KeypadButton({
     handleDigitButton(target.value);
   }
 
+  function handleOnMouseUp() {
+    const elementWithFocus = document.getElementById(inputWithFocusId);
+    elementWithFocus.focus();
+    setKeypadButtonTyped("");
+  }
+
   useEffect(
     function () {
       if (keypadButtonClicked) {
@@ -155,7 +159,7 @@ export default function KeypadButton({
       value={buttonValue}
       onClick={(event) => handleOnClick(event)}
       onMouseDown={() => setKeypadButtonTyped(buttonValue)}
-      onMouseUp={() => setKeypadButtonTyped("")}
+      onMouseUp={handleOnMouseUp}
       data-testid="keypadButton"
     ></input>
   );
