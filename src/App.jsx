@@ -205,6 +205,7 @@ function App() {
                   key={miscKeys.deleteButton}
                   inputWithFocusId={inputWithFocusId}
                   keypadButtonTyped={keypadButtonTyped}
+                  setKeypadButtonTyped={setKeypadButtonTyped}
                 />
                 <KeypadButton
                   buttonValue="C"
@@ -212,6 +213,7 @@ function App() {
                   key={miscKeys.clearButton}
                   inputWithFocusId={inputWithFocusId}
                   keypadButtonTyped={keypadButtonTyped}
+                  setKeypadButtonTyped={setKeypadButtonTyped}
                 />
                 <KeypadButton
                   buttonValue="="
@@ -220,6 +222,7 @@ function App() {
                   inputWithFocusId={inputWithFocusId}
                   setPerformCalculation={setPerformCalculation}
                   keypadButtonTyped={keypadButtonTyped}
+                  setKeypadButtonTyped={setKeypadButtonTyped}
                 />
                 {keypadButtons.map((item) => (
                   <KeypadButton
@@ -228,6 +231,7 @@ function App() {
                     key={item.key}
                     inputWithFocusId={inputWithFocusId}
                     keypadButtonTyped={keypadButtonTyped}
+                    setKeypadButtonTyped={setKeypadButtonTyped}
                   />
                 ))}
               </div>

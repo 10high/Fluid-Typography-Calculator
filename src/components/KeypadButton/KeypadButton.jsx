@@ -9,6 +9,7 @@ KeypadButton.propTypes = {
   inputWithFocusId: PropTypes.string,
   setPerformCalculation: PropTypes.func,
   keypadButtonTyped: PropTypes.string,
+  setKeypadButtonTyped: PropTypes.func,
 };
 
 export default function KeypadButton({
@@ -17,6 +18,7 @@ export default function KeypadButton({
   inputWithFocusId,
   setPerformCalculation,
   keypadButtonTyped,
+  setKeypadButtonTyped,
 }) {
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
@@ -152,6 +154,8 @@ export default function KeypadButton({
       aria-hidden="true"
       value={buttonValue}
       onClick={(event) => handleOnClick(event)}
+      onMouseDown={() => setKeypadButtonTyped(buttonValue)}
+      onMouseUp={() => setKeypadButtonTyped("")}
       data-testid="keypadButton"
     ></input>
   );
