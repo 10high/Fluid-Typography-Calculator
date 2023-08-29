@@ -62,6 +62,16 @@ export default function UnitInput({
       setKeypadButtonTyped(["=", "←", "C"][actualCharacter]);
     }
 
+    if (event.key === "c") {
+      setInputFieldObjs((objs) =>
+        objs.map((obj) =>
+          obj.text === "1 rem:"
+            ? { ...obj, inputValue: "16", inputIsInvalid: false }
+            : { ...obj, inputValue: "0", inputIsInvalid: false }
+        )
+      );
+    }
+
     if (event.key === "Enter") {
       setPerformCalculation(true);
     }
