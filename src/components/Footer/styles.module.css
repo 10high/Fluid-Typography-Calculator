@@ -1,0 +1,35 @@
+footer {
+  min-width: 350px;
+  max-width: 1200px;
+  padding-bottom: 16px;
+}
+
+.imageAttribution {
+  display: block;
+  max-width: fit-content;
+  margin: 0 16px 0 auto;
+}
+
+.footerLinksWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  max-width: 760px;
+  margin: 8px auto 0 auto;
+}
+
+.footerLegalLink {
+  font-size: clamp(
+    0.75rem,
+    0.37037037037037035vw + 0.6666666666666666rem,
+    1rem
+  );
+}
+
+@media (hover: hover) {
+  .footerLegalLink:hover {
+    color: #000;
+    text-decoration-thickness: 2px;
+  }
+}

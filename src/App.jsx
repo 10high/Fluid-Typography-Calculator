@@ -10,6 +10,7 @@ import VerticalConnectingLine from "./layout/VerticalConnectingLine/VerticalConn
 import NavBar from "./components/NavBar/NavBar";
 import Header from "./components/Header/Header";
 import Description from "./components/Description/Description";
+import Footer from "./components/Footer/Footer";
 
 const keypadButtons = [
   { value: "7", key: self.crypto.randomUUID() },
@@ -216,6 +217,7 @@ function App() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
