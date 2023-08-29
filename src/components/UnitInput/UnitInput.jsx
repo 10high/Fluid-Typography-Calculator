@@ -41,6 +41,13 @@ export default function UnitInput({
     setHasLostFocus(true);
   }
 
+  function handleOnFocus() {
+    if (inputValue === "0") {
+      const elementWithFocus = document.getElementById(fieldId);
+      elementWithFocus.setSelectionRange(0, 1);
+    }
+  }
+
   function handleOnKeyDown(event) {
     if (event.key === "Enter") {
       setPerformCalculation(true);
@@ -74,6 +81,7 @@ export default function UnitInput({
             handleInputFieldOnChange(fieldId, event.target.value)
           }
           onBlur={handleOnBlur}
+          onFocus={handleOnFocus}
           onKeyDown={(event) => handleOnKeyDown(event)}
         />
         <abbr className={Styles.calculator__measureUnit} title="pixels">
