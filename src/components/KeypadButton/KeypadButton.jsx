@@ -90,7 +90,10 @@ export default function KeypadButton({
     setInputFieldObjs((objs) =>
       objs.map((obj) =>
         obj.fieldId === inputWithFocusId
-          ? { ...obj, inputValue: `${updatedValue}` }
+          ? {
+              ...obj,
+              inputValue: `${updatedValue === "" ? "0" : updatedValue}`,
+            }
           : obj
       )
     );
