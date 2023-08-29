@@ -2,6 +2,7 @@ footer {
   align-self: end;
   min-width: 350px;
   margin: 32px 0 16px 0;
+  border-top: solid 1.5px black;
 }
 
 .imageAttribution {
