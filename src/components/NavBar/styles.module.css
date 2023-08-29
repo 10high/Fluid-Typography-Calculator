@@ -1,4 +1,5 @@
 .navbar {
+  align-self: start;
   position: relative;
   min-width: 350px;
   max-width: 1200px;

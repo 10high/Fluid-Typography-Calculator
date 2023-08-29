@@ -52,6 +52,7 @@ body {
 #root {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto auto auto;
-  align-content: space-between;
+  grid-template-rows: max-content auto auto;
+  background-image: url("./assets/images/free-squared-paper-vector.png");
+  overflow: hidden;
 }

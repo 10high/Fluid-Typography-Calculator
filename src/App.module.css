@@ -1,10 +1,11 @@
 main {
+  align-self: start !important;
   display: flex;
   justify-content: center;
   min-width: 350px;
-  max-width: 1000px;
+  max-width: 1200px;
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1300px) {
     justify-content: flex-end;
   }
 }

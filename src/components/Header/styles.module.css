@@ -8,6 +8,10 @@
   white-space: nowrap;
 }
 
+h2 {
+  font-weight: normal;
+}
+
 .pageTitle {
   display: flex;
   flex-wrap: wrap;
@@ -40,7 +44,7 @@
   border-top-style: solid;
   border-top-width: 2.5px;
   border-top-color: black;
-  width: 100vw;
+  width: 50vw;
 }
 
 .pageTitle__lineDown {
