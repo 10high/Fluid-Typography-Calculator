@@ -8,6 +8,7 @@ KeypadButton.propTypes = {
   setInputFieldObjs: PropTypes.func,
   inputWithFocusId: PropTypes.string,
   setPerformCalculation: PropTypes.func,
+  keypadButtonTyped: PropTypes.string,
 };
 
 export default function KeypadButton({
@@ -15,6 +16,7 @@ export default function KeypadButton({
   setInputFieldObjs,
   inputWithFocusId,
   setPerformCalculation,
+  keypadButtonTyped,
 }) {
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
@@ -142,7 +144,9 @@ export default function KeypadButton({
 
   return (
     <input
-      className={Styles.keypad__button}
+      className={`${Styles.keypad__button} ${
+        keypadButtonTyped === buttonValue && Styles.keypad__button__pressed
+      }`}
       type="button"
       tabIndex="-1"
       aria-hidden="true"

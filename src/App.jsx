@@ -117,6 +117,7 @@ function App() {
   );
   const [annotate, setAnnotate] = useState(false);
   const [screenIsSmall, setScreenIsSmall] = useState(false);
+  const [keypadButtonTyped, setKeypadButtonTyped] = useState("");
 
   useEffect(function handleWindowResize() {
     if (window.innerWidth < 1001) {
@@ -180,6 +181,7 @@ function App() {
                       setPerformCalculation={setPerformCalculation}
                       fieldId={item.fieldId}
                       inputIsInvalid={item.inputIsInvalid}
+                      setKeypadButtonTyped={setKeypadButtonTyped}
                       key={item.fieldId}
                     >
                       {item.text}
@@ -202,12 +204,14 @@ function App() {
                   setInputFieldObjs={setInputFieldObjs}
                   key={miscKeys.deleteButton}
                   inputWithFocusId={inputWithFocusId}
+                  keypadButtonTyped={keypadButtonTyped}
                 />
                 <KeypadButton
                   buttonValue="C"
                   setInputFieldObjs={setInputFieldObjs}
                   key={miscKeys.clearButton}
                   inputWithFocusId={inputWithFocusId}
+                  keypadButtonTyped={keypadButtonTyped}
                 />
                 <KeypadButton
                   buttonValue="="
@@ -215,6 +219,7 @@ function App() {
                   key={miscKeys.performCalculationButton}
                   inputWithFocusId={inputWithFocusId}
                   setPerformCalculation={setPerformCalculation}
+                  keypadButtonTyped={keypadButtonTyped}
                 />
                 {keypadButtons.map((item) => (
                   <KeypadButton
@@ -222,6 +227,7 @@ function App() {
                     setInputFieldObjs={setInputFieldObjs}
                     key={item.key}
                     inputWithFocusId={inputWithFocusId}
+                    keypadButtonTyped={keypadButtonTyped}
                   />
                 ))}
               </div>

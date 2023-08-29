@@ -15,7 +15,7 @@
 }
 
 .calculator__clipboard:active,
-.keypad__button--pressed {
+.keypad__button__pressed {
   font-weight: 700 !important;
   border-width: 2px !important;
   background-color: #a1a1a1 !important;

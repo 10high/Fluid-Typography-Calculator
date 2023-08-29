@@ -10,6 +10,7 @@ UnitInput.propTypes = {
   setInputWithFocusId: PropTypes.func,
   setPerformCalculation: PropTypes.func,
   inputIsInvalid: PropTypes.bool,
+  setKeypadButtonTyped: PropTypes.func,
 };
 
 export default function UnitInput({
@@ -19,6 +20,7 @@ export default function UnitInput({
   setPerformCalculation,
   inputValue,
   inputIsInvalid,
+  setKeypadButtonTyped,
   children,
 }) {
   const [hasLostFocus, setHasLostFocus] = useState(false);
@@ -49,6 +51,17 @@ export default function UnitInput({
   }
 
   function handleOnKeyDown(event) {
+    if (
+      ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.key)
+    ) {
+      setKeypadButtonTyped(event.key);
+    }
+
+    if (["Enter", "Backspace", "c"].includes(event.key)) {
+      const actualCharacter = ["Enter", "Backspace", "c"].indexOf(event.key);
+      setKeypadButtonTyped(["=", "←", "C"][actualCharacter]);
+    }
+
     if (event.key === "Enter") {
       setPerformCalculation(true);
     }
@@ -83,6 +96,7 @@ export default function UnitInput({
           onBlur={handleOnBlur}
           onFocus={handleOnFocus}
           onKeyDown={(event) => handleOnKeyDown(event)}
+          onKeyUp={() => setKeypadButtonTyped("")}
         />
         <abbr className={Styles.calculator__measureUnit} title="pixels">
           px
