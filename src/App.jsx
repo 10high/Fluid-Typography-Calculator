@@ -26,19 +26,36 @@ const keypadButtons = [
 ];
 
 const inputFields = [
-  { text: "1 rem:", fieldId: self.crypto.randomUUID(), inputValue: "16" },
+  {
+    text: "1 rem:",
+    fieldId: self.crypto.randomUUID(),
+    inputValue: "16",
+    inputIsInvalid: false,
+  },
   {
     text: "min viewport:",
     fieldId: self.crypto.randomUUID(),
     inputValue: "0",
+    inputIsInvalid: false,
   },
   {
     text: "max viewport:",
     fieldId: self.crypto.randomUUID(),
     inputValue: "0",
+    inputIsInvalid: false,
   },
-  { text: "clamp min:", fieldId: self.crypto.randomUUID(), inputValue: "0" },
-  { text: "clamp max:", fieldId: self.crypto.randomUUID(), inputValue: "0" },
+  {
+    text: "clamp min:",
+    fieldId: self.crypto.randomUUID(),
+    inputValue: "0",
+    inputIsInvalid: false,
+  },
+  {
+    text: "clamp max:",
+    fieldId: self.crypto.randomUUID(),
+    inputValue: "0",
+    inputIsInvalid: false,
+  },
 ];
 
 const tooltips = {
@@ -135,6 +152,7 @@ function App() {
             <div></div>
             <div className={Styles.resultDisplay__border}>
               <ResultDisplay
+                setInputFieldObjs={setInputFieldObjs}
                 inputFieldObjs={inputFieldObjs}
                 performCalculation={performCalculation}
                 setPerformCalculation={setPerformCalculation}
@@ -161,6 +179,7 @@ function App() {
                       setInputWithFocusId={setInputWithFocusId}
                       setPerformCalculation={setPerformCalculation}
                       fieldId={item.fieldId}
+                      inputIsInvalid={item.inputIsInvalid}
                       key={item.fieldId}
                     >
                       {item.text}

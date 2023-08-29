@@ -3,6 +3,7 @@ import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
 ResultDisplay.propTypes = {
+  setInputFieldObjs: PropTypes.func,
   inputFieldObjs: PropTypes.array,
   performCalculation: PropTypes.bool,
   setPerformCalculation: PropTypes.func,
@@ -12,6 +13,7 @@ ResultDisplay.propTypes = {
 };
 
 export default function ResultDisplay({
+  setInputFieldObjs,
   inputFieldObjs,
   performCalculation,
   setPerformCalculation,
@@ -22,6 +24,16 @@ export default function ResultDisplay({
   useEffect(
     function () {
       if (performCalculation) {
+        if (inputFieldObjs.some((item) => item.inputValue < 1)) {
+          setInputFieldObjs((curr) =>
+            curr.map((obj) =>
+              obj.inputValue < 1 ? { ...obj, inputIsInvalid: true } : obj
+            )
+          );
+          setPerformCalculation(false);
+          return;
+        }
+
         const remInput = Number(inputFieldObjs[0].inputValue);
         const minScreen = Number(inputFieldObjs[1].inputValue);
         const maxScreen = Number(inputFieldObjs[2].inputValue);
@@ -58,6 +70,7 @@ export default function ResultDisplay({
       setPerformCalculation,
       setResultValue,
       annotate,
+      setInputFieldObjs,
     ]
   );
 

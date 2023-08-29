@@ -38,7 +38,7 @@ export default function KeypadButton({
       setInputFieldObjs((objs) =>
         objs.map((obj) =>
           obj.fieldId === inputWithFocusId
-            ? { ...obj, inputValue: `${newInput}` }
+            ? { ...obj, inputValue: `${newInput}`, inputIsInvalid: false }
             : obj
         )
       );
@@ -54,8 +54,8 @@ export default function KeypadButton({
     setInputFieldObjs((objs) =>
       objs.map((obj) =>
         obj.text === "1 rem:"
-          ? { ...obj, inputValue: "16" }
-          : { ...obj, inputValue: "0" }
+          ? { ...obj, inputValue: "16", inputIsInvalid: false }
+          : { ...obj, inputValue: "0", inputIsInvalid: false }
       )
     );
     elementWithFocus.focus();

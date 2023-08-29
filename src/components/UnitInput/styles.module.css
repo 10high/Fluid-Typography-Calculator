@@ -10,7 +10,7 @@
   margin-right: 4px;
 }
 
-.calculator__inputField--invalid {
+.calculator__inputField__invalid {
   border-color: red !important;
 }
 

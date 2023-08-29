@@ -9,6 +9,7 @@ UnitInput.propTypes = {
   setInputFieldObjs: PropTypes.func,
   setInputWithFocusId: PropTypes.func,
   setPerformCalculation: PropTypes.func,
+  inputIsInvalid: PropTypes.bool,
 };
 
 export default function UnitInput({
@@ -17,6 +18,7 @@ export default function UnitInput({
   setInputWithFocusId,
   setPerformCalculation,
   inputValue,
+  inputIsInvalid,
   children,
 }) {
   const [hasLostFocus, setHasLostFocus] = useState(false);
@@ -26,7 +28,9 @@ export default function UnitInput({
     if (newInput >= 0 && newInput <= 9999) {
       setInputFieldObjs((objs) =>
         objs.map((obj) =>
-          obj.fieldId === fieldId ? { ...obj, inputValue: `${newInput}` } : obj
+          obj.fieldId === fieldId
+            ? { ...obj, inputValue: `${newInput}`, inputIsInvalid: false }
+            : obj
         )
       );
     }
@@ -60,7 +64,9 @@ export default function UnitInput({
       <label htmlFor={fieldId}>{children}</label>
       <span>
         <input
-          className={Styles.calculator__inputField}
+          className={`${Styles.calculator__inputField} ${
+            inputIsInvalid && Styles.calculator__inputField__invalid
+          }`}
           id={fieldId}
           type="text"
           value={inputValue}
