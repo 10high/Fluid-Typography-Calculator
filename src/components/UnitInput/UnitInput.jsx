@@ -78,6 +78,7 @@ export default function UnitInput({
   }
 
   useEffect(() => {
+    if (!hasLostFocus) return;
     const timer = setTimeout(() => {
       setInputWithFocusId("");
     }, 300);
