@@ -35,11 +35,11 @@ describe("tests keypad interactions with input fields", () => {
     //sets focus on input field
     await user.click(allInputFields[2]);
     //clicks keypad digits
-    await user.click(allKeypadKeys[0]);
-    await user.click(allKeypadKeys[1]);
-    await user.click(allKeypadKeys[2]);
-    await user.click(allKeypadKeys[3]);
-    await user.click(allKeypadKeys[4]);
+    await user.click(allKeypadKeys[12]);
+    await user.click(allKeypadKeys[9]);
+    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[11]);
+    await user.click(allKeypadKeys[6]);
 
     //assert
     expect(allInputFields[2]).toHaveValue("1234");
@@ -57,15 +57,15 @@ describe("tests keypad interactions with input fields", () => {
     await user.click(allInputFields[2]);
     //clicks keypad digits
     await user.click(allKeypadKeys[0]);
-    await user.click(allKeypadKeys[1]);
-    await user.click(allKeypadKeys[2]);
-    await user.click(allKeypadKeys[3]);
-    await user.click(allKeypadKeys[4]);
+    await user.click(allKeypadKeys[9]);
+    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[11]);
+    await user.click(allKeypadKeys[6]);
     //selects middle two digits from inputfield
     allInputFields[2].setSelectionRange(1, 3);
     fireEvent.select(allInputFields[2]);
     //inserts digit "5"
-    await user.click(allKeypadKeys[5]);
+    await user.click(allKeypadKeys[7]);
 
     //assert
     expect(allInputFields[2]).toHaveValue("154");
@@ -104,17 +104,17 @@ describe("tests keypad interactions with input fields", () => {
 
     //act
     await user.click(allInputFields[1]);
-    await user.click(allKeypadKeys[1]);
+    await user.click(allKeypadKeys[9]);
     await user.click(allInputFields[2]);
-    await user.click(allKeypadKeys[2]);
+    await user.click(allKeypadKeys[10]);
     await user.click(allInputFields[3]);
-    await user.click(allKeypadKeys[3]);
-    await user.click(allInputFields[4]);
-    await user.click(allKeypadKeys[4]);
-    await user.click(allInputFields[5]);
-    await user.click(allKeypadKeys[5]);
-    //click keypad clear button
     await user.click(allKeypadKeys[11]);
+    await user.click(allInputFields[4]);
+    await user.click(allKeypadKeys[6]);
+    await user.click(allInputFields[5]);
+    await user.click(allKeypadKeys[7]);
+    //click keypad clear button
+    await user.click(allKeypadKeys[1]);
 
     //assert
     //that input field have correct values
@@ -139,15 +139,15 @@ describe("tests keypad interactions with input fields", () => {
     //sets focus on input field
     await user.click(allInputFields[4]);
     //clicks keypad digits
-    await user.click(allKeypadKeys[0]);
-    await user.click(allKeypadKeys[1]);
-    await user.click(allKeypadKeys[2]);
-    await user.click(allKeypadKeys[3]);
-    await user.click(allKeypadKeys[4]);
+    await user.click(allKeypadKeys[12]);
+    await user.click(allKeypadKeys[9]);
+    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[11]);
+    await user.click(allKeypadKeys[6]);
     //selects middle two digits from inputfield
     allInputFields[4].setSelectionRange(1, 3);
     //click delete
-    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[0]);
 
     //assert
     expect(allInputFields[4]).toHaveValue("14");
@@ -166,15 +166,15 @@ describe("tests keypad interactions with input fields", () => {
     //sets focus on input field
     await user.click(allInputFields[4]);
     //clicks keypad digits
-    await user.click(allKeypadKeys[0]);
-    await user.click(allKeypadKeys[1]);
-    await user.click(allKeypadKeys[2]);
-    await user.click(allKeypadKeys[3]);
-    await user.click(allKeypadKeys[4]);
+    await user.click(allKeypadKeys[12]);
+    await user.click(allKeypadKeys[9]);
+    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[11]);
+    await user.click(allKeypadKeys[6]);
     //sets caret position
     allInputFields[4].setSelectionRange(2, 2);
     //click delete
-    await user.click(allKeypadKeys[10]);
+    await user.click(allKeypadKeys[0]);
 
     //assert
     expect(allInputFields[4]).toHaveValue("134");
@@ -196,7 +196,8 @@ describe("tests ResultDisplay component", () => {
     await user.type(allInputFields[3], "1440");
     await user.type(allInputFields[4], "16");
     await user.type(allInputFields[5], "24");
-    await user.click(allKeypadKeys[12]);
+    //click equals
+    await user.click(allKeypadKeys[2]);
 
     //assert
     expect(allInputFields[0]).toHaveValue(
@@ -260,9 +261,9 @@ describe("tests ResultDisplay component", () => {
     //removes focus from inputs
     await user.click(allTooltips[2]);
     //clicks equals button
-    await user.click(allKeypadKeys[12]);
+    await user.click(allKeypadKeys[2]);
     //clicks clear button
-    await user.click(allKeypadKeys[11]);
+    await user.click(allKeypadKeys[1]);
 
     //assert
     expect(allInputFields[0]).toHaveValue(
