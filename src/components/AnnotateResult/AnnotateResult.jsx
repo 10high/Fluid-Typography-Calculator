@@ -9,6 +9,7 @@ AnnotateResult.propTypes = {
 export default function AnnotateResult({ setAnnotate, annotate }) {
   return (
     <input
+      className={Styles.annotate}
       type="checkbox"
       title="Annotate result with pixel values as a comment."
       value={annotate}

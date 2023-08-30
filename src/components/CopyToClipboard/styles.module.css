@@ -6,6 +6,7 @@
 .calculator__clipboardButton {
   background-color: transparent;
   border: none;
+  padding: 0;
 }
 
 .calculator__clipboard {
@@ -16,11 +17,11 @@
   padding: 2px;
 }
 
-.calculator__clipboard:focus {
+.calculator__clipboard:active {
   outline-style: none;
   border-style: solid;
   border-color: black;
-  border-width: 0.5px 0.5px 2px 2px;
+  border-width: 0.5px 0.5px 0.5px 0.5px;
   border-radius: 4px;
 }
 

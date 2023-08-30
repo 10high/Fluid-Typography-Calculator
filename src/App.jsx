@@ -161,8 +161,10 @@ function App() {
                 resultValue={resultValue}
                 annotate={annotate}
               />
-              <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
-              <CopyToClipbpard resultValue={resultValue} />
+              <div className={Styles.resultDisplay__clipboardWrapper}>
+                <AnnotateResult annotate={annotate} setAnnotate={setAnnotate} />
+                <CopyToClipbpard resultValue={resultValue} />
+              </div>
             </div>
             <div className={Styles.resultDisplay__rightLine}></div>
             <VerticalConnectingLine height={16} width={"50%"} />

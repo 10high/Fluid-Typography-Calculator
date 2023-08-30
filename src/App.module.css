@@ -68,6 +68,11 @@ main {
   border-color: black;
   border-width: 1.5px;
   border-radius: 7px;
+  padding: 0 8px;
+}
+
+.resultDisplay__clipboardWrapper {
+  display: flex;
 }
 
 .resultDisplay__rightLine {
