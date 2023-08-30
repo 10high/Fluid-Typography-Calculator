@@ -1,7 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
+import { act } from "react-dom/test-utils";
 
 describe("tests keyboard interactions with input fields", () => {
   it("tests that input from keyboard 1) removes leading zeroes and 2) that input length does not exceed 4 digits", async () => {
@@ -72,28 +73,6 @@ describe("tests keypad interactions with input fields", () => {
     expect(allInputFields[2].selectionEnd).toBe(2);
     expect(allInputFields[2]).toHaveFocus();
   });
-
-  /* it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
-    //arrange
-    render(<App />);
-    const allInputFields = screen.getAllByRole("textbox");
-    const allKeypadKeys = screen.getAllByTestId("keypadButton");
-    const allTooltips = screen.getAllByRole("tooltip");
-    const user = userEvent.setup();
-
-    //act
-    await user.click(allInputFields[1]);
-    await user.click(allTooltips[0]);
-    // a 300 setTimeout that clears input ID on blur necessitates a timeout here
-    setTimeout(() => {
-      user.click(allKeypadKeys[5]);
-      user.keyboard("6");
-
-      //assert
-      // allInputFields[0] has a default value of 16
-      expect(allInputFields[1]).toHaveValue("16");
-    }, 400);
-  }); */
 
   it("test: keypad C button 1) clears all input 2)resets '1 rem' to '16' 3)returns focus to previous input", async () => {
     //arrange
@@ -274,5 +253,41 @@ describe("tests ResultDisplay component", () => {
     expect(allInputFields[3]).toHaveValue("0");
     expect(allInputFields[4]).toHaveValue("0");
     expect(allInputFields[5]).toHaveValue("0");
+  });
+});
+
+describe("test timers", () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+  });
+  afterEach(() => {
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+  it("Keypad loses focus when user clicks away from input field and any digit from keypad or keyboard is not added to last focused input", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const allKeypadKeys = screen.getAllByTestId("keypadButton");
+    const allTooltips = screen.getAllByRole("tooltip");
+    const user = userEvent.setup();
+
+    //act
+    //set focus on input field
+    await user.click(allInputFields[1]);
+    //remove focus from input field
+    await user.click(allTooltips[0]);
+
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    await user.click(allKeypadKeys[7]);
+    await user.keyboard("6");
+
+    //assert
+    // allInputFields[1] has a default value of 16
+    expect(allInputFields[1]).toHaveValue("16");
+    screen.debug();
   });
 });
