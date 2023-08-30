@@ -43,13 +43,6 @@ export default function UnitInput({
     setHasLostFocus(true);
   }
 
-  function handleOnFocus() {
-    if (inputValue === "0") {
-      const elementWithFocus = document.getElementById(fieldId);
-      elementWithFocus.setSelectionRange(0, 1);
-    }
-  }
-
   function handleOnKeyDown(event) {
     if (
       ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.key)
@@ -105,7 +98,6 @@ export default function UnitInput({
             handleInputFieldOnChange(fieldId, event.target.value)
           }
           onBlur={handleOnBlur}
-          onFocus={handleOnFocus}
           onKeyDown={(event) => handleOnKeyDown(event)}
           onKeyUp={() => setKeypadButtonTyped("")}
         />

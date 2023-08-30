@@ -36,7 +36,7 @@ export default function KeypadButton({
         selectionEnd,
         elementWithFocus.value.length
       );
-
+    console.log(selectionStart);
     const newInput = Number(`${updatedValue}`);
     if (newInput >= 0 && newInput <= 9999) {
       setInputFieldObjs((objs) =>
