@@ -203,6 +203,29 @@ describe("tests ResultDisplay component", () => {
     );
   });
 
+  it("tests 1)if any input field has 0 value on perform calculation, no calculation is performed 2) respective input fields are highlighted red", async () => {
+    //arrange
+    render(<App />);
+    const allInputFields = screen.getAllByRole("textbox");
+    const user = userEvent.setup();
+
+    //act
+    await user.type(allInputFields[2], "375");
+    await user.type(allInputFields[3], "1440");
+    await user.type(allInputFields[4], "16");
+    //Last input field is left empty
+    await user.type(allInputFields[4], "{Enter}");
+
+    const emptyInputField = await screen.findByLabelText("clamp max:");
+
+    //assert
+    expect(allInputFields[0]).toHaveValue(
+      //this is the deafult value on page load
+      "clamp(2.625rem, 1.019vw + 2.396rem, 3.313rem)"
+    );
+    expect(emptyInputField).toHaveStyle("border-color: red !important");
+  });
+
   it("tests that AnnotateResult component annotates result with input pixel values", async () => {
     //arrange
     render(<App />);
