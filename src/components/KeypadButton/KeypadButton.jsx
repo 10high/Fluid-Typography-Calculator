@@ -124,9 +124,11 @@ export default function KeypadButton({
   }
 
   function handleOnMouseUp() {
-    const elementWithFocus = document.getElementById(inputWithFocusId);
-    elementWithFocus.focus();
     setKeypadButtonTyped("");
+    if (inputWithFocusId !== "") {
+      const elementWithFocus = document.getElementById(inputWithFocusId);
+      elementWithFocus.focus();
+    }
   }
 
   useEffect(
