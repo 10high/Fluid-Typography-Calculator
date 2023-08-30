@@ -12,6 +12,8 @@ KeypadButton.propTypes = {
   setKeypadButtonTyped: PropTypes.func,
 };
 
+let inputFieldID = "";
+
 export default function KeypadButton({
   buttonValue,
   setInputFieldObjs,
@@ -24,7 +26,7 @@ export default function KeypadButton({
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
 
   function handleDigitButton(digitValue) {
-    const elementWithFocus = document.getElementById(inputWithFocusId);
+    const elementWithFocus = document.getElementById(inputFieldID);
 
     const selectionStart = elementWithFocus.selectionStart;
     const selectionEnd = elementWithFocus.selectionEnd;
@@ -36,12 +38,11 @@ export default function KeypadButton({
         selectionEnd,
         elementWithFocus.value.length
       );
-    console.log(selectionStart);
     const newInput = Number(`${updatedValue}`);
     if (newInput >= 0 && newInput <= 9999) {
       setInputFieldObjs((objs) =>
         objs.map((obj) =>
-          obj.fieldId === inputWithFocusId
+          obj.fieldId === inputFieldID
             ? { ...obj, inputValue: `${newInput}`, inputIsInvalid: false }
             : obj
         )
@@ -49,10 +50,11 @@ export default function KeypadButton({
       setInputCaretPosition(selectionEnd - (selectionEnd - selectionStart) + 1);
       setKeypadButtonClicked(true);
     }
+    elementWithFocus.focus();
   }
 
   function handleCButton() {
-    const elementWithFocus = document.getElementById(inputWithFocusId);
+    const elementWithFocus = document.getElementById(inputFieldID);
     setInputFieldObjs((objs) =>
       objs.map((obj) =>
         obj.text === "1 rem:"
@@ -64,7 +66,7 @@ export default function KeypadButton({
   }
 
   function handleDeleteButton() {
-    const elementWithFocus = document.getElementById(inputWithFocusId);
+    const elementWithFocus = document.getElementById(inputFieldID);
 
     const selectionStart = elementWithFocus.selectionStart;
     const selectionEnd = elementWithFocus.selectionEnd;
@@ -91,7 +93,7 @@ export default function KeypadButton({
 
     setInputFieldObjs((objs) =>
       objs.map((obj) =>
-        obj.fieldId === inputWithFocusId
+        obj.fieldId === inputFieldID
           ? {
               ...obj,
               inputValue: `${updatedValue === "" ? "0" : updatedValue}`,
@@ -114,7 +116,7 @@ export default function KeypadButton({
       setPerformCalculation(true);
       return;
     }
-    if (inputWithFocusId === "") return;
+    if (inputFieldID === "") return;
 
     if (target.value === "←") {
       handleDeleteButton();
@@ -123,18 +125,16 @@ export default function KeypadButton({
     handleDigitButton(target.value);
   }
 
-  function handleOnMouseUp() {
-    setKeypadButtonTyped("");
-    if (inputWithFocusId !== "") {
-      const elementWithFocus = document.getElementById(inputWithFocusId);
-      elementWithFocus.focus();
-    }
+  function handleOnFocus() {
+    inputWithFocusId !== ""
+      ? (inputFieldID = inputWithFocusId)
+      : (inputFieldID = "");
   }
 
   useEffect(
     function () {
       if (keypadButtonClicked) {
-        const elementWithFocus = document.getElementById(inputWithFocusId);
+        const elementWithFocus = document.getElementById(inputFieldID);
         elementWithFocus.setSelectionRange(
           inputCaretPosition,
           inputCaretPosition
@@ -142,12 +142,7 @@ export default function KeypadButton({
         setKeypadButtonClicked(false);
       }
     },
-    [
-      keypadButtonClicked,
-      inputWithFocusId,
-      inputCaretPosition,
-      setKeypadButtonClicked,
-    ]
+    [keypadButtonClicked, inputCaretPosition, setKeypadButtonClicked]
   );
 
   return (
@@ -160,8 +155,9 @@ export default function KeypadButton({
       aria-hidden="true"
       value={buttonValue}
       onClick={(event) => handleOnClick(event)}
+      onFocus={handleOnFocus}
       onMouseDown={() => setKeypadButtonTyped(buttonValue)}
-      onMouseUp={handleOnMouseUp}
+      onMouseUp={() => setKeypadButtonTyped("")}
       data-testid="keypadButton"
     ></input>
   );

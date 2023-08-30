@@ -74,9 +74,8 @@ export default function UnitInput({
     if (!hasLostFocus) return;
     const timer = setTimeout(() => {
       setInputWithFocusId("");
+      setHasLostFocus(false);
     }, 300);
-
-    setHasLostFocus(false);
 
     return function () {
       clearTimeout(timer);
