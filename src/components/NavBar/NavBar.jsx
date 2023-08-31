@@ -1,4 +1,6 @@
 import Styles from "./styles.module.css";
+import speech1 from "../../assets/images/speech1.png";
+import speech2 from "../../assets/images/speech2.png";
 
 export default function NavBar() {
   return (
@@ -25,7 +27,7 @@ export default function NavBar() {
         <li className={Styles.profilePic} tabIndex="-1">
           <img
             className={Styles.profilePic__img1}
-            src="../../src/assets/images/speech1.png"
+            src={speech1}
             alt=""
             aria-hidden="true"
             width="32"
@@ -33,7 +35,7 @@ export default function NavBar() {
           />
           <img
             className={Styles.profilePic__img2}
-            src="../../src/assets/images/speech2.png"
+            src={speech2}
             alt=""
             aria-hidden="true"
             width="32"
