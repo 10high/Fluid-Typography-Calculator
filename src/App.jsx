@@ -118,6 +118,7 @@ function App() {
   const [annotate, setAnnotate] = useState(false);
   const [screenIsSmall, setScreenIsSmall] = useState(false);
   const [keypadButtonTyped, setKeypadButtonTyped] = useState("");
+  const [inputToFocus, setInputToFocus] = useState(null);
 
   useEffect(function handleWindowResize() {
     if (window.innerWidth < 1001) {
@@ -185,6 +186,7 @@ function App() {
                       inputIsInvalid={item.inputIsInvalid}
                       setKeypadButtonTyped={setKeypadButtonTyped}
                       key={item.fieldId}
+                      setInputToFocus={setInputToFocus}
                     >
                       {item.text}
                     </UnitInput>
@@ -208,6 +210,7 @@ function App() {
                   inputWithFocusId={inputWithFocusId}
                   keypadButtonTyped={keypadButtonTyped}
                   setKeypadButtonTyped={setKeypadButtonTyped}
+                  inputToFocus={inputToFocus}
                 />
                 <KeypadButton
                   buttonValue="C"
@@ -216,6 +219,7 @@ function App() {
                   inputWithFocusId={inputWithFocusId}
                   keypadButtonTyped={keypadButtonTyped}
                   setKeypadButtonTyped={setKeypadButtonTyped}
+                  inputToFocus={inputToFocus}
                 />
                 <KeypadButton
                   buttonValue="="
@@ -234,6 +238,7 @@ function App() {
                     inputWithFocusId={inputWithFocusId}
                     keypadButtonTyped={keypadButtonTyped}
                     setKeypadButtonTyped={setKeypadButtonTyped}
+                    inputToFocus={inputToFocus}
                   />
                 ))}
               </div>

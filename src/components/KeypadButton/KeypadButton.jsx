@@ -10,6 +10,7 @@ KeypadButton.propTypes = {
   setPerformCalculation: PropTypes.func,
   keypadButtonTyped: PropTypes.string,
   setKeypadButtonTyped: PropTypes.func,
+  inputToFocus: PropTypes.any,
 };
 
 let inputFieldID = "";
@@ -21,22 +22,21 @@ export default function KeypadButton({
   setPerformCalculation,
   keypadButtonTyped,
   setKeypadButtonTyped,
+  inputToFocus,
 }) {
   const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
 
   function handleDigitButton(digitValue) {
-    const elementWithFocus = document.getElementById(inputFieldID);
-
-    const selectionStart = elementWithFocus.selectionStart;
-    const selectionEnd = elementWithFocus.selectionEnd;
+    const selectionStart = inputToFocus.current.selectionStart;
+    const selectionEnd = inputToFocus.current.selectionEnd;
 
     const updatedValue =
-      elementWithFocus.value.substring(0, selectionStart) +
+      inputToFocus.current.value.substring(0, selectionStart) +
       digitValue +
-      elementWithFocus.value.substring(
+      inputToFocus.current.value.substring(
         selectionEnd,
-        elementWithFocus.value.length
+        inputToFocus.current.value.length
       );
     const newInput = Number(`${updatedValue}`);
     if (newInput >= 0 && newInput <= 9999) {
@@ -50,11 +50,10 @@ export default function KeypadButton({
       setInputCaretPosition(selectionEnd - (selectionEnd - selectionStart) + 1);
       setKeypadButtonClicked(true);
     }
-    elementWithFocus.focus();
+    inputToFocus.current.focus();
   }
 
   function handleCButton() {
-    const elementWithFocus = document.getElementById(inputFieldID);
     setInputFieldObjs((objs) =>
       objs.map((obj) =>
         obj.text === "1 rem:"
@@ -62,31 +61,29 @@ export default function KeypadButton({
           : { ...obj, inputValue: "0", inputIsInvalid: false }
       )
     );
-    elementWithFocus.focus();
+    inputToFocus.current.focus();
   }
 
   function handleDeleteButton() {
-    const elementWithFocus = document.getElementById(inputFieldID);
-
-    const selectionStart = elementWithFocus.selectionStart;
-    const selectionEnd = elementWithFocus.selectionEnd;
+    const selectionStart = inputToFocus.current.selectionStart;
+    const selectionEnd = inputToFocus.current.selectionEnd;
 
     let updatedValue = "";
 
     if (selectionEnd - selectionStart > 0) {
       updatedValue =
-        elementWithFocus.value.substring(0, selectionStart) +
-        elementWithFocus.value.substring(
+        inputToFocus.current.value.substring(0, selectionStart) +
+        inputToFocus.current.value.substring(
           selectionEnd,
-          elementWithFocus.value.length
+          inputToFocus.current.value.length
         );
       setInputCaretPosition(selectionStart);
     } else {
       updatedValue =
-        elementWithFocus.value.substring(0, selectionStart - 1) +
-        elementWithFocus.value.substring(
+        inputToFocus.current.value.substring(0, selectionStart - 1) +
+        inputToFocus.current.value.substring(
           selectionEnd,
-          elementWithFocus.value.length
+          inputToFocus.current.value.length
         );
       setInputCaretPosition(selectionStart - 1);
     }
@@ -104,7 +101,7 @@ export default function KeypadButton({
 
     setKeypadButtonClicked(true);
 
-    elementWithFocus.focus();
+    inputToFocus.current.focus();
   }
 
   function handleOnClick({ target }) {
@@ -134,15 +131,19 @@ export default function KeypadButton({
   useEffect(
     function () {
       if (keypadButtonClicked) {
-        const elementWithFocus = document.getElementById(inputFieldID);
-        elementWithFocus.setSelectionRange(
+        inputToFocus.current.setSelectionRange(
           inputCaretPosition,
           inputCaretPosition
         );
         setKeypadButtonClicked(false);
       }
     },
-    [keypadButtonClicked, inputCaretPosition, setKeypadButtonClicked]
+    [
+      keypadButtonClicked,
+      inputCaretPosition,
+      setKeypadButtonClicked,
+      inputToFocus,
+    ]
   );
 
   return (

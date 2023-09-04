@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
@@ -11,6 +11,7 @@ UnitInput.propTypes = {
   setPerformCalculation: PropTypes.func,
   inputIsInvalid: PropTypes.bool,
   setKeypadButtonTyped: PropTypes.func,
+  setInputToFocus: PropTypes.func,
 };
 
 export default function UnitInput({
@@ -21,9 +22,12 @@ export default function UnitInput({
   inputValue,
   inputIsInvalid,
   setKeypadButtonTyped,
+  setInputToFocus,
   children,
 }) {
   const [hasLostFocus, setHasLostFocus] = useState(false);
+
+  const inputElement = useRef(null);
 
   function handleInputFieldOnChange(fieldId, inputValue) {
     const newInput = Number(inputValue);
@@ -39,6 +43,7 @@ export default function UnitInput({
   }
 
   function handleOnBlur() {
+    setInputToFocus(inputElement);
     setInputWithFocusId(fieldId);
     setHasLostFocus(true);
   }
@@ -99,6 +104,7 @@ export default function UnitInput({
           onBlur={handleOnBlur}
           onKeyDown={(event) => handleOnKeyDown(event)}
           onKeyUp={() => setKeypadButtonTyped("")}
+          ref={inputElement}
         />
         <abbr className={Styles.calculator__measureUnit} title="pixels">
           px
