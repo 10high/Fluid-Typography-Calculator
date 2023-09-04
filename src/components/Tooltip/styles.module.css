@@ -34,6 +34,7 @@
   border-color: white;
   border-width: 1.5px;
   border-radius: 6px;
+  white-space: pre-line;
 }
 
 .calculator__tooltip::after {
