@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import Styles from "./App.module.css";
 import Tooltip from "./components/Tooltip/Tooltip";
 import UnitInput from "./components/UnitInput/UnitInput";
@@ -81,26 +81,13 @@ const tooltips = {
   },
 };
 
-const unitInputItemWrapperKey = [
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-];
-
 const miscKeys = {
   clearButton: self.crypto.randomUUID(),
   deleteButton: self.crypto.randomUUID(),
   performCalculationButton: self.crypto.randomUUID(),
 };
 
-const unitInputDivSpacerKeys = [
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
-  self.crypto.randomUUID(),
+const fragmentKeys = [
   self.crypto.randomUUID(),
   self.crypto.randomUUID(),
   self.crypto.randomUUID(),
@@ -170,12 +157,9 @@ function App() {
             <div className={Styles.resultDisplay__rightLine}></div>
             <VerticalConnectingLine height={16} width={"50%"} />
             {inputFieldObjs.map((item, index) => (
-              <>
-                <div key={unitInputDivSpacerKeys[index]}></div>
-                <div
-                  className={Styles.unitInput__wrapper}
-                  key={unitInputItemWrapperKey[index]}
-                >
+              <Fragment key={fragmentKeys[index]}>
+                <div></div>
+                <div className={Styles.unitInput__wrapper}>
                   <div className={Styles.unitInput__border}>
                     <UnitInput
                       inputValue={item.inputValue}
@@ -185,8 +169,8 @@ function App() {
                       fieldId={item.fieldId}
                       inputIsInvalid={item.inputIsInvalid}
                       setKeypadButtonTyped={setKeypadButtonTyped}
-                      key={item.fieldId}
                       setInputToFocus={setInputToFocus}
+                      key={item.fieldId}
                     >
                       {item.text}
                     </UnitInput>
@@ -195,9 +179,9 @@ function App() {
                     {tooltips[item.fieldId].text}
                   </Tooltip>
                 </div>
-                <div key={unitInputDivSpacerKeys[++index]}></div>
+                <div></div>
                 <VerticalConnectingLine height={12} width={"50%"} />
-              </>
+              </Fragment>
             ))}
             <VerticalConnectingLine height={4} width={"50%"} />
             <div></div>

@@ -2,11 +2,13 @@ import Styles from "./styles.module.css";
 import speech1 from "../../assets/images/speech1.png";
 import speech2 from "../../assets/images/speech2.png";
 
+const keys = [self.crypto.randomUUID(), self.crypto.randomUUID()];
+
 export default function NavBar() {
   return (
     <nav className={Styles.navbar}>
       <ul className={Styles.navbar__list}>
-        <li>
+        <li key={keys[0]}>
           <a
             target="_blank"
             rel="noreferrer"
@@ -24,7 +26,7 @@ export default function NavBar() {
             </svg>
           </a>
         </li>
-        <li className={Styles.profilePic} tabIndex="-1">
+        <li className={Styles.profilePic} tabIndex="-1" key={keys[1]}>
           <img
             className={Styles.profilePic__img1}
             src={speech1}
