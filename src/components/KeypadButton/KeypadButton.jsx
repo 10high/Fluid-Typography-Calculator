@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
@@ -24,8 +24,9 @@ export default function KeypadButton({
   setKeypadButtonTyped,
   inputToFocus,
 }) {
-  const [inputCaretPosition, setInputCaretPosition] = useState(0);
   const [keypadButtonClicked, setKeypadButtonClicked] = useState(false);
+
+  const caretPosition = useRef(0);
 
   function handleDigitButton(digitValue) {
     const selectionStart = inputToFocus.current.selectionStart;
@@ -47,7 +48,8 @@ export default function KeypadButton({
             : obj
         )
       );
-      setInputCaretPosition(selectionEnd - (selectionEnd - selectionStart) + 1);
+      caretPosition.current =
+        selectionEnd - (selectionEnd - selectionStart) + 1;
       setKeypadButtonClicked(true);
     }
     inputToFocus.current.focus();
@@ -77,7 +79,7 @@ export default function KeypadButton({
           selectionEnd,
           inputToFocus.current.value.length
         );
-      setInputCaretPosition(selectionStart);
+      caretPosition.current = selectionStart;
     } else {
       updatedValue =
         inputToFocus.current.value.substring(0, selectionStart - 1) +
@@ -85,7 +87,7 @@ export default function KeypadButton({
           selectionEnd,
           inputToFocus.current.value.length
         );
-      setInputCaretPosition(selectionStart - 1);
+      caretPosition.current = selectionStart - 1;
     }
 
     setInputFieldObjs((objs) =>
@@ -132,18 +134,13 @@ export default function KeypadButton({
     function () {
       if (keypadButtonClicked) {
         inputToFocus.current.setSelectionRange(
-          inputCaretPosition,
-          inputCaretPosition
+          caretPosition.current,
+          caretPosition.current
         );
         setKeypadButtonClicked(false);
       }
     },
-    [
-      keypadButtonClicked,
-      inputCaretPosition,
-      setKeypadButtonClicked,
-      inputToFocus,
-    ]
+    [keypadButtonClicked, setKeypadButtonClicked, inputToFocus]
   );
 
   return (
