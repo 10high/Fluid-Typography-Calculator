@@ -311,6 +311,5 @@ describe("test timers", () => {
     //assert
     // allInputFields[1] has a default value of 16
     expect(allInputFields[1]).toHaveValue("16");
-    screen.debug();
   });
 });
